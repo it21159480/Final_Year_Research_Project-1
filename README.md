@@ -13,7 +13,7 @@ Navigating the Green Frontier is an initiative to revolutionize paddy agricultur
 
 #### Market Price Prediction System
 - *Objective*: Develop a robust machine learning-driven tool for accurate and dynamic paddy price predictions to support economic decision-making.
-- *Technology*: LSTM models, real-time data integration including weather and market trends.
+- *Technology*: LSTM and Sarima models, real-time data integration.
 - *Impact*: Reduces financial risks and improves forecasting accuracy for farmers and stakeholders.
 
 #### Paddy Classification and Clustering
