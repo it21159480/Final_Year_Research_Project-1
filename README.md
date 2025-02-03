@@ -46,7 +46,7 @@ Navigating the Green Frontier is an initiative to revolutionize paddy agricultur
 ### Installation & Setup
 1. Clone the repository:
    bash
-   git clone https://github.com/yourrepository/green-frontier.git
+   git clone [https://github.com/yourrepository/green-frontier.git](https://github.com/ahamedasiff/Final_Year_Research_Project)
    
 2. Install dependencies:
    bash
@@ -64,8 +64,6 @@ Navigating the Green Frontier is an initiative to revolutionize paddy agricultur
 - M.I.M Mufeel – AI-driven Pest Management Solutions
 - Fazla H.N.F – Innovative Disease Detection and Management
 
-### License
-This project is licensed under the [MIT License](LICENSE).
 
 ### Acknowledgments
 Thanks to our academic advisors and industry partners who provided insight and expertise that greatly assisted the project.
