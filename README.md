@@ -1,4 +1,4 @@
-# Navigating the Green FrontierThe Future of Paddy Ecosystems and Sustainable Agriculture
+# Navigating the Green Frontier - The Future of Paddy Ecosystems and Sustainable Agriculture
 
 *Project ID*: 24-25J-057
 
