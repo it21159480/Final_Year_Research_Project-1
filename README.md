@@ -1,7 +1,3 @@
-Based on the details from your presentation, here's a suggested format for a README file that incorporates the main components and research goals of your project, titled "Navigating the Green Frontier." This project aims to enhance the sustainability of paddy farming through advanced systems for market price prediction, paddy classification, disease management, and pest control.
-
----
-
 # Navigating the Green Frontier
 ## The Future of Paddy Ecosystems and Sustainable Agriculture
 
@@ -71,6 +67,3 @@ This project is licensed under the [MIT License](LICENSE).
 ### Acknowledgments
 Thanks to our academic advisors and industry partners who provided insight and expertise that greatly assisted the project.
 
----
-
-This README template outlines the project's scope, individual components, system architecture, and the technologies used, along with a guide for installation and acknowledgments. Modify the repository links and any specific instructions based on your actual project setup.
