@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/de490543-8913-4073-a0b3-dac81e5a9afe)# Navigating the Green Frontier - The Future of Paddy Ecosystems and Sustainable Agriculture
+# Navigating the Green Frontier - The Future of Paddy Ecosystems and Sustainable Agriculture
 
 *Project ID*: 24-25J-057
 
