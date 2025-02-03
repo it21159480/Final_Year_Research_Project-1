@@ -6,6 +6,9 @@
 ### Introduction
 Navigating the Green Frontier is an initiative to revolutionize paddy agriculture through advanced technology and sustainable practices. Our project focuses on developing comprehensive systems for paddy classification, market price prediction, pest management, and disease detection. These systems are designed to support economic decision-making and improve the accuracy and efficiency of agricultural monitoring and management.
 
+
+![diagram ppt1 ](https://github.com/user-attachments/assets/357e1673-aa91-4cf8-b764-62d9227062d8)
+
 ### Project Components
 
 #### Market Price Prediction System
