@@ -1,91 +1,97 @@
-# Navigating the Green Frontier - The Future of Paddy Ecosystems and Sustainable Agriculture
+This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
-*Project ID*: 24-25J-057
+# Getting Started
 
-### Introduction
-Navigating the Green Frontier is an initiative to revolutionize paddy agriculture through advanced technology and sustainable practices. Our project focuses on developing comprehensive systems for paddy classification, market price prediction, pest management, and disease detection. These systems are designed to support economic decision-making and improve the accuracy and efficiency of agricultural monitoring and management.
+> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
 
+## Step 1: Start Metro
 
-![diagram ppt1 ](https://github.com/user-attachments/assets/357e1673-aa91-4cf8-b764-62d9227062d8)
+First, you will need to run **Metro**, the JavaScript build tool for React Native.
 
-### Project Components
+To start the Metro dev server, run the following command from the root of your React Native project:
 
-#### Market Price Prediction System
-- *Objective*: Develop a effective machine learning-driven tool for accurate and dynamic paddy price predictions to support economic decision-making.
-- *Technology*: LSTM and SARIMA models, real-time data integration.
-- *Impact*: Reduces financial risks and improves forecasting accuracy for farmers and stakeholders.
+```sh
+# Using npm
+npm start
 
-#### Paddy Classification and Clustering
-- *Objective*: Create a dynamic paddy identification and clustering system using hierarchical clustering and CNNs to improve resource management and crop value.
-- *Technology*: CNN models, image processing for paddy variety differentiation.
-- *Impact*: Enhances agricultural monitoring and decision-making through accurate crop classification.
+# OR using Yarn
+yarn start
+```
 
-#### Pest Identification and Management
-- *Objective*: Develop an AI-powered pest management solution that offers immediate, tailored pest control recommendations.
-- *Technology*: YOLO models for real-time pest identification, integrated with a mobile app using TensorFlow.js.
-- *Impact*: Reduces pesticide misuse, crop damage, and environmental impact while increasing yield.
+## Step 2: Build and run your app
 
-#### Paddy Disease Identification and Remedy
-- *Objective*: Utilize CNNs to revolutionize the detection and management of paddy leaf diseases, providing early and accurate diagnoses.
-- *Technology*: Deep learning models with transfer learning, real-time data integration.
-- *Impact*: Improves crop management and yield through early detection and targeted disease management.
+With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
 
-### System Architecture
-- *Farmers and Field Officers*: Primary users providing real-time input and receiving actionable insights.
-- *Dashboard*: Central interface for monitoring and management, featuring analytics and decision support tools.
-- *Data & Scripts*: Utilize advanced algorithms and data processing for predictive analytics and operational management.
+### Android
 
-# Research Areas
-- Deep Learning (DL)
-- Dynamic Market Price Prediction
-- Advanced Paddy Classification and Clustering Systems
-- Pest Identification and Management Solutions
-- Disease Detection Systems for Crops
+```sh
+# Using npm
+npm run android
 
-# Problem Statement
-Across multiple industries, decision-making is often manual, time-consuming, and based on outdated methodologies. This project introduces AI-driven solutions to:
-1. Inconsistent classification leads to mismanagement of resources, affecting overall productivity.
-2. Lack of integration of advanced machine learning techniques to predict dynamic market trends.
-3. Inaccurate Pest Identification - Traditional methods are slow and often incorrect, leading to improper treatments and crop damage.
-4. Are Traditional methods for detecting paddy diseases accurate and efficient?
+# OR using Yarn
+yarn android
+```
 
-# Key Features
-- Data-Driven Decision Making – AI and ML models optimize predictions across all components.
-- User-Friendly Web Interface – Cloud-based accessibility for efficient interaction.
-- Real-Time Analytics – Dynamic adjustments based on live data inputs.
-- Secure & Scalable – Built with modern security protocols and scalable cloud infrastructure.
-- HTTP Request Handling – Simplifies form data handling, file uploads, and other HTTP operations.
+### iOS
 
-### Technologies Used
-- *Frontend*: React Native
-- *Backend*: Node.js, Flask
-- *Database*: MongoDB
-- *Machine Learning*: TensorFlow, Scikit-learn, LSTM, CNN, YOLO
-- *Deployment*: Azure Cloud, AWS
-- *Model Development and Training*: Google Colab
+For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
 
-### Installation & Setup
-1. Clone the repository:
-   bash
-   git clone [https://github.com/ahamedasiff/Final_Year_Research_Project](https://github.com/ahamedasiff/Final_Year_Research_Project)
-   
-2. Install dependencies:
-   bash
-   pip install -r requirements.txt
-   npm install
-   
-3. Run the application:
-   bash
-   npm start
-   
+The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
 
-### Contributors
-- M.T.M Aathif – Market Price Prediction and Data Analytics
-- Y.N.A Asiff – Advanced Paddy Classification Systems
-- M.I.M Mufeel – AI-driven Pest Management Solutions
-- Fazla H.N.F – Innovative Disease Detection and Management
+```sh
+bundle install
+```
 
+Then, and every time you update your native dependencies, run:
 
-### Acknowledgments
-Thanks to our academic advisors and industry partners who provided insight and expertise that greatly assisted the project.
+```sh
+bundle exec pod install
+```
 
+For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+
+```sh
+# Using npm
+npm run ios
+
+# OR using Yarn
+yarn ios
+```
+
+If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+
+This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+
+## Step 3: Modify your app
+
+Now that you have successfully run the app, let's make changes!
+
+Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+
+When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+
+- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
+- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+
+## Congratulations! :tada:
+
+You've successfully run and modified your React Native App. :partying_face:
+
+### Now what?
+
+- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
+- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+
+# Troubleshooting
+
+If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+
+# Learn More
+
+To learn more about React Native, take a look at the following resources:
+
+- [React Native Website](https://reactnative.dev) - learn more about React Native.
+- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
+- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
+- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
+- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
