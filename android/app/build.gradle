@@ -7,6 +7,8 @@ apply plugin: "com.facebook.react"
  * By default you don't need to apply any configuration, just uncomment the lines you need.
  */
 react {
+    apply from: file("../../node_modules/react-native-vector-icons/fonts.gradle")
+
     /* Folders */
     //   The root of your project, i.e. where "package.json" lives. Default is '../..'
     // root = file("../../")
@@ -115,5 +117,14 @@ dependencies {
         implementation("com.facebook.react:hermes-android")
     } else {
         implementation jscFlavor
+    }
+}
+
+tasks.whenTaskAdded { task ->
+    if (task.name == "generateDebugLintReportModel") {
+        task.dependsOn "copyReactNativeVectorIconFonts"
+    }
+    if (task.name == "lintAnalyzeDebug") {
+        task.dependsOn "copyReactNativeVectorIconFonts"
     }
 }

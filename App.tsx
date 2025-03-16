@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import HomeScreen from './src/screens/HomeScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
-import Ionicons from 'react-native-vector-icons/Ionicons'; // If using Expo
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Tab = createBottomTabNavigator();
 
@@ -14,7 +14,7 @@ export default function App() {
         screenOptions={({ route }) => ({
           // eslint-disable-next-line react/no-unstable-nested-components
           tabBarIcon: ({ color, size }) => {
-            let iconName;
+            let iconName: string = '';
             if (route.name === 'Home') {
               iconName = 'home-outline';
             } else if (route.name === 'Profile') {
