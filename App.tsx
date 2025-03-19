@@ -1,10 +1,10 @@
 import React from 'react';
-import RootNaviagtor from './src/Naviagtion/RootNaviagtor';
+import RootNavigator from './src/Navigation/RootNavigator';
 
 export default function App() {
   return (
     <>
-      <RootNaviagtor />
+      <RootNavigator />
     </>
   );
 }
