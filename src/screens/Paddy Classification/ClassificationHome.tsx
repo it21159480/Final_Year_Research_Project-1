@@ -9,6 +9,7 @@ import Header from '../../components/Header';
 import colors from '../../theme/colors';
 import PestBanner from '../../assets/pestHome.png';
 import SecondBanner from '../../assets/pestHome1.png'
+import PaddyBg from '../../assets/paddybackground.png'
 import { Card } from 'react-native-paper';
 import classificationImage from '../../assets/Classification.png';
 import Pest from '../../assets/Pest.png';
@@ -49,7 +50,7 @@ const ClassificationHome : React.FC<ClassificationHomeProps> = ({navigation}) =>
                 title={'Paddy Classification'} />}
         >
             <Card style={{ marginTop: 25 }}>
-                <Card.Cover source={PestBanner} />
+                <Card.Cover source={PaddyBg} />
             </Card>
             <View style={styles.container}>
                 <Text style={styles.title}>Welcome to Paddy Classifier!</Text>
