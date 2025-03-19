@@ -23,7 +23,7 @@ const images = [
 ];
 
 const details = [
-  { image: Classification, title: 'How do we identify an insect?', subtitle: 'The world of insects is rich and varied....' },
+  { image: Classification, title: 'How do we identify an insect?', subtitle: 'The world of insects is rich and varied..' },
   { image: Pest, title: 'The Scientific Nomenclature for Insects', subtitle: 'There are more than one million known species of insects...' },
   { image: Disease, title: 'Disease Identification', subtitle: 'Understanding the different types of diseases...' },
   { image: Price, title: 'Agricultural Pricing', subtitle: 'Learn how prices are set in the agriculture industry...' },
