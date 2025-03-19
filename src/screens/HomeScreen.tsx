@@ -13,6 +13,7 @@ import Price from '../assets/Price.png';
 import colors from '../theme/colors';
 import { PEST_HOME } from './Pest Identification/PestHome'; // Ensure this import is correct
 import { HomeScreenProps } from '../Naviagtion/types';
+import { CLASSIFICATION_HOME } from './Paddy Classification/ClassificationHome';
 
 export const HOME_SCREEN = 'HOME_SCREEN'
 const images = [
@@ -48,6 +49,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
             switch (index) {
               case 0:
                 // Navigate to Classification screen
+                navigation.navigate(CLASSIFICATION_HOME)
                 console.log('Navigate to Classification');
                 break;
               case 1:
