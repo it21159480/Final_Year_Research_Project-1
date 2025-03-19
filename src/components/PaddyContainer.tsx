@@ -5,7 +5,7 @@ import colors from '../theme/colors'; // Assuming you have a theme/colors.js fil
 
 // const { height } = Dimensions.get('window');
 
-function Container({
+function PaddyContainer({
   children,
   customStyle,
   footerCustomStyle,
@@ -44,7 +44,7 @@ function Container({
           backgroundColor={colors.transparent}
           translucent={true}
         />}
-        {header && <View style={{height: 300}}>{header}</View>}
+        {header && <View>{header}</View>}
 
         <SafeAreaView edges={['left', 'right']} style={[styles.flexbox, customStyle]}>
           <Wrap style={[styles.flexbox, defaultStyle]} keyboardShouldPersistTaps="always">
@@ -85,4 +85,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Container;
+export default PaddyContainer;

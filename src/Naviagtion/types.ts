@@ -6,6 +6,7 @@ import { PROFILE_SCREEN } from '../screens/ProfileScreen';
 import { HOME_SCREEN } from '../screens/HomeScreen';
 import { PEST_HOME } from '../screens/Pest Identification/PestHome'; // Import the PestHome screen
 import { PREDICTION_SCREEN } from '../screens/Pest Identification/PredictionScreen';
+import { PADDY_PREDICTION_SCREEN } from '../screens/Paddy Classification/PaddyPredictionScreen';
 import { TAB_STACK } from './RootNaviagtor';
 import { CLASSIFICATION_HOME } from '../screens/Paddy Classification/ClassificationHome';
 
@@ -14,6 +15,7 @@ export type NavigatorParamList = {
   [TAB_STACK]: undefined;
   [PEST_HOME]: undefined; // Add the PestHome screen
   [PREDICTION_SCREEN]: { imageUri: string };
+  [PADDY_PREDICTION_SCREEN]: { imageUri: string };
   [CLASSIFICATION_HOME]: undefined;
 };
 
@@ -35,6 +37,11 @@ export type PestHomeProps = StackScreenProps<
 export type PredictionScreenProps = StackScreenProps<
   NavigatorParamList,
   typeof PREDICTION_SCREEN
+>;
+
+export type PaddyPredictionScreenProps = StackScreenProps<
+  NavigatorParamList,
+  typeof PADDY_PREDICTION_SCREEN
 >;
 
 export type ClassificationHomeProps = StackScreenProps<
