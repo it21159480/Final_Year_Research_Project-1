@@ -3,7 +3,7 @@ import { View, Text, Image, StyleSheet, Alert, TouchableOpacity } from 'react-na
 import React, { useEffect, useState } from 'react'
 import { PaddyPredictionScreenProps } from '../../Naviagtion/types'
 import colors from '../../theme/colors'
-import Container from '../../components/PaddyContainer'
+import PaddyContainer from '../../components/PaddyContainer'
 import PaddyHeader from '../../components/PaddyHeader'
 import axios from 'axios';
 import { ActivityIndicator } from 'react-native-paper'
@@ -65,7 +65,7 @@ const PaddyPredictionScreen: React.FC<PaddyPredictionScreenProps> = ({ route, na
   },[])
 
   return (
-    <Container
+    <PaddyContainer
       scrollView={true}
       imageTop={true}
       customStyle={styles.con}
@@ -95,7 +95,7 @@ const PaddyPredictionScreen: React.FC<PaddyPredictionScreenProps> = ({ route, na
         )}
         
       </View>
-    </Container>
+    </PaddyContainer>
 
   )
 }
