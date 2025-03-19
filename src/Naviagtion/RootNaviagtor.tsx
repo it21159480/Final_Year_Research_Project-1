@@ -2,25 +2,18 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
-import ProfileScreen from '../screens/ProfileScreen';
+import ProfileScreen, { PROFILE_SCREEN } from '../screens/ProfileScreen';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import colors from '../theme/colors';
 import HomeStack,{HOME_STACK} from './AppStack';
 import {TabNavigatorParamList} from './types';
+import HomeScreen, { HOME_SCREEN } from '../screens/HomeScreen';
 
 const Tab = createBottomTabNavigator<TabNavigatorParamList>();
 
-
-
-// const HomeStack = () => (
-//   <Stack.Navigator>
-//     <Stack.Screen name={HOME_SCREEN} component={HomeScreen} />
-//     <Stack.Screen name={PEST_HOME} component={PestHome} /> {/* Add the Details screen here */}
-//   </Stack.Navigator>
-// );
+export const TAB_STACK = 'TAB_STACK';
 const RootNaviagtor = () => {
   return (
-    <NavigationContainer>
       <Tab.Navigator
         screenOptions={({ route }) => ({
           headerShown: false,
@@ -29,7 +22,7 @@ const RootNaviagtor = () => {
           // eslint-disable-next-line react/no-unstable-nested-components
           tabBarIcon: ({ color, size, focused }) => {
         let iconName: string = '';
-        if (route.name === 'HOME_STACK') {
+        if (route.name === HOME_SCREEN) {
           iconName = focused ? 'home' : 'home-outline';
         } else if (route.name === 'PROFILE_SCREEN') {
           iconName = focused ? 'person' : 'person-outline';
@@ -40,10 +33,9 @@ const RootNaviagtor = () => {
           tabBarInactiveTintColor: 'gray',
         })}
       >
-        <Tab.Screen name="HOME_STACK" component={HomeStack} />
-        <Tab.Screen name="PROFILE_SCREEN" component={ProfileScreen} />
+        <Tab.Screen name={HOME_SCREEN} component={HomeScreen} />
+        <Tab.Screen name={PROFILE_SCREEN} component={ProfileScreen} />
       </Tab.Navigator>
-    </NavigationContainer>
   )
 }
 

@@ -2,12 +2,13 @@ import React from 'react';
 import { Provider } from 'react-redux'; // Import Provider from react-redux
 import { PersistGate } from 'redux-persist/integration/react'; // Import PersistGate for redux-persist
 import { PaperProvider } from 'react-native-paper'; // Import PaperProvider for React Native Paper
-import RootNavigator from './src/Naviagtion/RootNaviagtor'; // Fix typo from 'Naviagtor' to 'Navigator'
 import { store, persistor } from './src/store/store'; // Import your store and persistor
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { MenuProvider } from 'react-native-popup-menu';
 import { StatusBar } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import HomeStack from './src/Naviagtion/AppStack';
+import { NavigationContainer } from '@react-navigation/native';
 export default function App() {
   return (
     <MenuProvider>
@@ -19,9 +20,13 @@ export default function App() {
                 <StatusBar
                   // backgroundColor={colors.transparent}
                   barStyle="light-content"
-                  // translucent={true}
+                // translucent={true}
                 />
-                <RootNavigator /> {/* Your main navigator */}
+                {/* <RootNavigator />  */}
+                <NavigationContainer>
+                  <HomeStack />
+
+                </NavigationContainer>
               </PaperProvider>
             </PersistGate>
           </Provider>

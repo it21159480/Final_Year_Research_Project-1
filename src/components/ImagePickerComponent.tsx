@@ -9,6 +9,7 @@ import colors from '../theme/colors';
 const ImagePickerComponent = ({ onImagePicked }: { onImagePicked: (uri: string) => void }) => {
   const openCamera = () => {
     launchCamera({ mediaType: 'photo', cameraType: 'back', saveToPhotos: true }, (response) => {
+      console.log('Camera Response: ');
       if (response.didCancel) {
         console.log('User cancelled camera picker');
       } else if (response.errorCode) {
