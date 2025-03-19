@@ -139,14 +139,14 @@ const PaddyPredictionScreen: React.FC<PaddyPredictionScreenProps> = ({ route, na
         population: score,
         color: colors.green,
         legendFontColor: '#7F7F7F',
-        legendFontSize: 15,
+        legendFontSize: 11,
       },
       {
         name: 'Remaining',
         population: 100 - score,
         color: colors.lightGray,
         legendFontColor: '#7F7F7F',
-        legendFontSize: 15,
+        legendFontSize: 11,
       },
     ];
   };
@@ -187,8 +187,8 @@ const PaddyPredictionScreen: React.FC<PaddyPredictionScreenProps> = ({ route, na
                       <Text style={{ fontSize: 18, marginBottom: 10 }}>Confidence Score</Text>
                       <PieChart
                         data={getPieChartData(prediction.confidence_score)}
-                        width={250}
-                        height={150}
+                        width={240}
+                        height={140}
                         chartConfig={{
                           backgroundColor: '#ffffff',
                           backgroundGradientFrom: '#ffffff',
@@ -201,7 +201,7 @@ const PaddyPredictionScreen: React.FC<PaddyPredictionScreenProps> = ({ route, na
                         }}
                         accessor="population"
                         backgroundColor="transparent"
-                        paddingLeft="5"
+                        paddingLeft="1"
                       />
                     </View>
                   )}
