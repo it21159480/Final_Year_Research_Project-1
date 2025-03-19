@@ -52,7 +52,7 @@ const ClassificationHome : React.FC<ClassificationHomeProps> = ({navigation}) =>
                 <Card.Cover source={PestBanner} />
             </Card>
             <View style={styles.container}>
-                <Text style={styles.title}>Welcome to Paddy classifier!</Text>
+                <Text style={styles.title}>Welcome to Paddy Classifier!</Text>
                 <Text style={styles.description}>
                     Discover the world of paddy affecting paddy crops. Simply snap a photo or upload one from your gallery to identify any pest.
                 </Text>

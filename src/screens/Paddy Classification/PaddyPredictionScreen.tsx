@@ -15,7 +15,7 @@ const PaddyPredictionScreen: React.FC<PaddyPredictionScreenProps> = ({ route, na
   console.log(imageUri)
 
   const [loading, setLoading] = useState(false);
-  const [prediction, setPrediction] = useState<{ predicted_class: string; confidence_score: string; number_of_data_point: string } | null>(null);
+  const [prediction, setPrediction] = useState<{ predicted_class: string; confidence_score: string; number_of_data: string } | null>(null);
 
   const uploadImage = async () => {
     if (!imageUri) {
@@ -41,12 +41,12 @@ const PaddyPredictionScreen: React.FC<PaddyPredictionScreenProps> = ({ route, na
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       console.log("after getting resposne")
-      if (response.data.predicted_class && response.data.confidence_score && response.data.number_of_data_point) {
+      if (response.data.predicted_class && response.data.confidence_score && response.data.number_of_data) {
         console.log("in side reponse if condition")
         setPrediction({
           predicted_class: response.data.predicted_class,
           confidence_score: response.data.confidence_score,
-          number_of_data_point: response.data.number_of_data_point,
+          number_of_data: response.data.number_of_data,
         });
       } else {
         console.log("in side reponse else condition")
@@ -88,7 +88,7 @@ const PaddyPredictionScreen: React.FC<PaddyPredictionScreenProps> = ({ route, na
             <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Prediction Result:</Text>
             <Text style={{ fontSize: 18, marginTop: 10 }}>Class: {prediction.predicted_class}</Text>
             <Text style={{ fontSize: 18, marginTop: 10 }}>Confidence: {prediction.confidence_score}</Text>
-            <Text style={{ fontSize: 18, marginTop: 10 }}>Number of data point: {prediction.number_of_data_point}</Text>
+            <Text style={{ fontSize: 18, marginTop: 10 }}>Number of data point: {prediction.number_of_data}</Text>
           </View>
         )}
           </>
