@@ -169,8 +169,8 @@ const PaddyPredictionScreen: React.FC<PaddyPredictionScreenProps> = ({ route, na
           <>
 
             {prediction && (
-              <View style={{ marginTop: 30 }}>
-                <Text style={styles.predictionTitle}>Prediction Result</Text>
+              <View style={{ marginTop: 30}}>
+                <Text style={styles.predictionTitle}>Prediction Result of Most Representative Paddy</Text>
 
                 {/* Other Prediction Details */}
                 <TouchableOpacity style={styles.resultCard}>
@@ -296,7 +296,8 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   predictionTitle: {
-    fontSize: 24,
+    fontSize: 20,
+    marginBottom: 10,
     fontWeight: 'bold',
     color: colors.black,
     textAlign: 'center',
