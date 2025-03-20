@@ -116,11 +116,11 @@ const PaddyPredictionScreen: React.FC<PaddyPredictionScreenProps> = ({ route, na
         });
       } else {
         console.log("in side response else condition")
-        Alert.alert('Error', 'No prediction returned from the server.');
+        Alert.alert('Error', 'Upload image unable to process. please re take!.');
       }
     } catch (error) {
       console.error('Error uploading image:', error);
-      Alert.alert('Error', 'There was an error processing the image.');
+      Alert.alert('Error', 'Upload image unable to process. please re take!.');
     } finally {
       setLoading(false);
     }
@@ -180,7 +180,7 @@ const PaddyPredictionScreen: React.FC<PaddyPredictionScreenProps> = ({ route, na
                   </View>
                 </TouchableOpacity>
 
-                {/* Confidence Score Pie Chart */}
+                {/* Confidence Score Pie Charts */}
                 <TouchableOpacity style={styles.resultCard}>
                   {prediction.confidence_score && (
                     <View style={{ marginTop: 20, alignItems: 'center' }}>
