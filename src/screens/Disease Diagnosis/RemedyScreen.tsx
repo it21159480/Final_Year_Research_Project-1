@@ -43,7 +43,7 @@ const RemedyScreen = () => {
         Disease: [disease],
       };
 
-      const response = await axios.post('http://10.0.2.2:5000/remedy', data);
+      const response = await axios.post(' http://172.28.30.127:5000/remedy', data);
 
       setRemedy(response.data.recommended_remedy);
       setModalVisible(true);

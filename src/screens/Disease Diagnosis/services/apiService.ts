@@ -6,7 +6,7 @@ export const makePrediction = async (imageUri: string) => {
 
   try {
     const response = await axios.post(
-      'http://10.0.2.2:5000/predict',  // Use this IP for Android Emulator
+      'http://172.28.30.127:5000/predict',  // Use this IP for Android Emulator
       formData,
       { headers: { 'Content-Type': 'multipart/form-data' } }
     );
