@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { Provider } from 'react-redux'; // Import Provider from react-redux
 import { PersistGate } from 'redux-persist/integration/react'; // Import PersistGate for redux-persist
 import { PaperProvider } from 'react-native-paper'; // Import PaperProvider for React Native Paper
@@ -10,7 +10,15 @@ import { StatusBar } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import HomeStack from './src/Naviagtion/AppStack';
 import { NavigationContainer } from '@react-navigation/native';
+import SplashScreen from 'react-native-splash-screen'; // 👈 Import splash screen
+
+
 export default function App() {
+
+  useEffect(() => {
+    SplashScreen.hide(); // 👈 Hides the splash screen
+  }, []);
+
   return (
     <MenuProvider>
       <GestureHandlerRootView style={{ flex: 1 }}>

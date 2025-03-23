@@ -6,7 +6,8 @@ import PredictionScreen,{PREDICTION_SCREEN} from '../screens/Pest Identification
 import ClassificationHome,{CLASSIFICATION_HOME} from '../screens/Paddy Classification/ClassificationHome';
 import { NavigatorParamList } from './types';
 import RootNaviagtor,{TAB_STACK} from './RootNaviagtor'
-
+import HomeScreen , {DISEASE_HOME_SCREEN} from '../screens/Disease Diagnosis/HomeScreen';
+import DiagnosisScreen, {DIAGNOSIS_SCREEN} from '../screens/Disease Diagnosis/DiagnosisScreen';
 export const HOME_STACK = 'HOME_STACK';
 const Stack = createStackNavigator<NavigatorParamList>();
 
@@ -17,6 +18,8 @@ export default function HomeStack() {
             <Stack.Screen name={PEST_HOME} component={PestHome} />
             <Stack.Screen name={PREDICTION_SCREEN} component={PredictionScreen} />
             <Stack.Screen name={CLASSIFICATION_HOME} component={ClassificationHome} />
+            <Stack.Screen name={DISEASE_HOME_SCREEN} component= {HomeScreen}/>
+            <Stack.Screen name={DIAGNOSIS_SCREEN} component={DiagnosisScreen} />
         </Stack.Navigator>
     );
 }
