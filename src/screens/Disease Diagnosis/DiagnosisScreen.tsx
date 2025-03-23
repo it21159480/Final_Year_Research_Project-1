@@ -19,59 +19,59 @@ const DiagnosisScreen:React.FC<DiagnosisScreenProps>  = ({navigation}) => {
 
   // const navigation = useNavigation<any>(); // Initialize the navigation hook
 
-  // const handleImageUpload = async () => {
-  //   const options: ImagePicker.ImageLibraryOptions = {
-  //     mediaType: 'photo',
-  //     quality: 1,
+  const handleImageUpload = async () => {
+    const options: ImagePicker.ImageLibraryOptions = {
+      mediaType: 'photo',
+      quality: 1,
       
-  //   };
+    };
 
-  //   ImagePicker.launchImageLibrary(options, async (response) => {
-  //     if (response.didCancel) {
-  //       console.log('User cancelled image picker');
-  //     } else if (response.errorMessage) {
-  //       console.error('ImagePicker Error: ', response.errorMessage);
-  //     } else {
-  //       const uri = response.assets?.[0]?.uri;
-  //       setImageUri(uri || '');  
-  //       setPrediction(null);
+    ImagePicker.launchImageLibrary(options, async (response) => {
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (response.errorMessage) {
+        console.error('ImagePicker Error: ', response.errorMessage);
+      } else {
+        const uri = response.assets?.[0]?.uri;
+        setImageUri(uri || '');  
+        setPrediction(null);
 
-  //       try {
-  //         setLoading(true);
-  //         let formData = new FormData();
-  //         formData.append('image', { uri, type: 'image/jpeg', name: 'image.jpg' });
+        try {
+          setLoading(true);
+          let formData = new FormData();
+          formData.append('image', { uri, type: 'image/jpeg', name: 'image.jpg' });
 
-  //         const responseFromApi = await axios.post(
-  //           'http://172.28.5.61:5000/predict',  
-  //           formData,
-  //           { headers: { 'Content-Type': 'multipart/form-data' } }
-  //         );
+          const responseFromApi = await axios.post(
+            'http://172.28.30.127:5000/predict',  
+            formData,
+            { headers: { 'Content-Type': 'multipart/form-data' } }
+          );
 
-  //         if (responseFromApi.data.predicted_label) {
-  //           setPrediction(responseFromApi.data);
+          if (responseFromApi.data.predicted_label) {
+            setPrediction(responseFromApi.data);
 
-  //           if (responseFromApi.data.predicted_label.toLowerCase() === 'normal') {
-  //             Alert.alert('Result', 'It\'s a healthy paddy leaf!');
-  //           }
-  //         } else {
-  //           if (responseFromApi.data.message === 'Not a Paddy Leaf') {
-  //             Alert.alert('Error', 'This is not a Paddy Leaf!');
-  //           } else {
-  //             Alert.alert('Error', 'Something went wrong. No prediction returned.');
-  //           }
-  //         }
-  //       } catch (error: any) {
-  //         if (error.response && error.response.data.message === 'Not a Paddy Leaf') {
-  //           Alert.alert('Error', 'This is not a Paddy Leaf!');
-  //         } else {
-  //           Alert.alert('Error', 'Error making request');
-  //         }
-  //       } finally {
-  //         setLoading(false);
-  //       }
-  //     }
-  //   });
-  // };
+            if (responseFromApi.data.predicted_label.toLowerCase() === 'normal') {
+              Alert.alert('Result', 'It\'s a healthy paddy leaf!');
+            }
+          } else {
+            if (responseFromApi.data.message === 'Not a Paddy Leaf') {
+              Alert.alert('Error', 'This is not a Paddy Leaf!');
+            } else {
+              Alert.alert('Error', 'Something went wrong. No prediction returned.');
+            }
+          }
+        } catch (error: any) {
+          if (error.response && error.response.data.message === 'Not a Paddy Leaf') {
+            Alert.alert('Error', 'This is not a Paddy Leaf!');
+          } else {
+            Alert.alert('Error', 'Error making request');
+          }
+        } finally {
+          setLoading(false);
+        }
+      }
+    });
+  };
 
   const handleImagePicked = async (uri :string)=>{
     try {
@@ -80,7 +80,7 @@ const DiagnosisScreen:React.FC<DiagnosisScreenProps>  = ({navigation}) => {
       formData.append('image', { uri, type: 'image/jpeg', name: 'image.jpg' });
 
       const responseFromApi = await axios.post(
-        'http://172.28.5.61:5000/predict',  
+        'http://172.28.30.127:5000/predict',  
         formData,
         { headers: { 'Content-Type': 'multipart/form-data' } }
       );
@@ -162,19 +162,19 @@ const DiagnosisScreen:React.FC<DiagnosisScreenProps>  = ({navigation}) => {
       )}
       
       {prediction ? (
-        // <TouchableOpacity onPress={handleImageUpload} style={styles.uploadButton}>
-        //   <Text style={styles.uploadButtonText}>Choose Another Image</Text>
-        // </TouchableOpacity>
-                <ImagePickerComponent  onImagePicked={handleImagePicked}/> 
+        <TouchableOpacity onPress={handleImageUpload} style={styles.uploadButton}>
+          <Text style={styles.uploadButtonText}>Choose Another Image</Text>
+        </TouchableOpacity>
+                // <ImagePickerComponent  onImagePicked={handleImagePicked}/> 
 
 
       ) : (
         // Button to choose image if no prediction is made
         <>
-        {/* <TouchableOpacity onPress={handleImageUpload} style={styles.uploadButton}>
+        <TouchableOpacity onPress={handleImageUpload} style={styles.uploadButton}>
           <Text style={styles.uploadButtonText}>Choose Image</Text>
-        </TouchableOpacity> */}
-        <ImagePickerComponent  onImagePicked={handleImagePicked}/> 
+        </TouchableOpacity>
+        {/* <ImagePickerComponent  onImagePicked={handleImagePicked}/>  */}
         </>
       )}
 
