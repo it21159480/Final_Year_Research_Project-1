@@ -109,12 +109,12 @@ console.log('Prediction:', prediction);
             <>
               {imageNotFound && <NotFound />}
               {!imageNotFound && <View>
-               {pestInfo.length > 0 ? (pestInfo.map((item, index) => {
+               {pestInfo.length > 0 ? (pestInfo.map((item : any, index: number) => {
                   return (
                     <View key={index} style={{ marginBottom: 20, padding: 10 }}>
                       <Text style={styles.title}>{item.section}</Text>
                       <Divider />
-                      {item.description && item.description.map((desc, i) => {
+                      {item.description && item.description.map((desc:any, i:any) => {
                         return (
                           <Text key={i} style={styles.description}>{desc}</Text>
                         )
@@ -131,28 +131,28 @@ console.log('Prediction:', prediction);
                         </View>
                       )}
                       <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginBottom: 10 }}>
-                        {item.images && item.images.map((img, i) => {
+                        {item.images && item.images.map((img : any, i: any) => {
                           return (
                             <Image key={i} source={{ uri: img.src }} style={styles.image} />
                           )
                         })}
                       </View>
 
-                      {item.subSections && item.subSections.map((sub, i) => {
+                      {item.subSections && item.subSections.map((sub : any, i: any) => {
                         return (
                           <View key={i}>
                             <View style={{ justifyContent: 'center', alignItems: 'center', }}>
                               <Text style={[styles.title, { backgroundColor: colors.GR300, padding: 5, margin: 5, borderRadius: 20 }]}>{sub.method}</Text>
                             </View>
                             <View style={{ gap: 10 }}>
-                              {sub.actions && sub.actions.map((act, j) => {
+                              {sub.actions && sub.actions.map((act :any, j: any) => {
                                 return (
                                   <Text key={j} style={styles.description}>• {act}</Text>
                                 )
                               })}
                             </View>
                             <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginBottom: 20 }}>
-                              {sub.images && sub.images.map((img, j) => {
+                              {sub.images && sub.images.map((img : any, j:any) => {
                                 return (
                                   <Image key={j} source={{ uri: img.src }} style={styles.image} />
                                 )
