@@ -18,7 +18,7 @@ export type NavigatorParamList = {
   [PREDICTION_SCREEN]: {imageUri: string};
   [CLASSIFICATION_HOME]: undefined;
   [DISEASE_HOME_SCREEN]: undefined;
-  [DIAGNOSIS_SCREEN]: undefined;
+  [DIAGNOSIS_SCREEN]: {imageUri: string};
   [REMEDY_SCREEN]: {disease: string};
 };
 

@@ -8,7 +8,7 @@ import ImagePickerComponent from '../../components/ImagePickerComponent'; // Adj
 import Container from '../../components/Container';
 import Header from '../../components/Header';
 import colors from '../../theme/colors';
-import PestBanner from '../../assets/pestHome.png';
+import PestBanner from '../../assets/pestHome1.png';
 import SecondBanner from '../../assets/pestHome1.png'
 import { Card } from 'react-native-paper';
 import classificationImage from '../../assets/Classification.png';

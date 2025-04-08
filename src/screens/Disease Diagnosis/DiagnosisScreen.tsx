@@ -1,22 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, Image, Alert,ImageBackground } from 'react-native';
 import * as ImagePicker from 'react-native-image-picker';
 import axios from 'axios';
-import { useNavigation } from '@react-navigation/native'; 
-import styles from './styles/DiagnosisScreenStyles';  
+import styles from './styles/DiagnosisScreenStyles';
 import LottieView from 'lottie-react-native';
 import { DiagnosisScreenProps } from '../../Naviagtion/types';
 import { REMEDY_SCREEN } from './RemedyScreen';
-import ImagePickerComponent from '../../components/ImagePickerComponent';
+// import ImagePickerComponent from '../../components/ImagePickerComponent';
 
 export const DIAGNOSIS_SCREEN = 'DIAGNOSIS_SCREEN' 
-const DiagnosisScreen:React.FC<DiagnosisScreenProps>  = ({navigation}) => {
-  const [imageUri, setImageUri] = useState<string>(''); 
+const DiagnosisScreen:React.FC<DiagnosisScreenProps>  = ({navigation, route}) => {
+
+  const { imageUri } = route.params
+
+
+  const [imageURI, setImageUri] = useState<string>(imageUri || ''); // Initialize with the passed image URI or empty string
   const [loading, setLoading] = useState<boolean>(false);
   const [prediction, setPrediction] = useState<any>(null);
 
-  
-
+  useEffect(() => {
+    if (imageUri) {
+      handleImagePicked(imageUri);// Update the image URI state when the prop changes
+    }
+  },[imageUri]); // Effect to handle image URI changes
   // const navigation = useNavigation<any>(); // Initialize the navigation hook
 
   const handleImageUpload = async () => {
@@ -42,7 +48,7 @@ const DiagnosisScreen:React.FC<DiagnosisScreenProps>  = ({navigation}) => {
           formData.append('image', { uri, type: 'image/jpeg', name: 'image.jpg' });
 
           const responseFromApi = await axios.post(
-            'http://172.28.30.127:5000/predict',  
+            'http://172.28.30.127:5000/predict',
             formData,
             { headers: { 'Content-Type': 'multipart/form-data' } }
           );
@@ -131,8 +137,8 @@ const DiagnosisScreen:React.FC<DiagnosisScreenProps>  = ({navigation}) => {
 
       {loading && <Text style={styles.loadingText}>Processing...</Text>}
 
-      {imageUri ? (
-  <Image source={{ uri: imageUri }} style={styles.imagePreview} />
+      {imageURI ? (
+  <Image source={{ uri: imageURI }} style={styles.imagePreview} />
 ) : (
   <>
     <Text>No Image Selected</Text>
