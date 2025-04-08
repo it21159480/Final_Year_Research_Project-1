@@ -14,6 +14,7 @@ import colors from '../theme/colors';
 import { PEST_HOME } from './Pest Identification/PestHome'; // Ensure this import is correct
 import { HomeScreenProps } from '../Naviagtion/types';
 import { CLASSIFICATION_HOME } from './Paddy Classification/ClassificationHome';
+import {DISEASE_HOME_SCREEN} from '../screens/Disease Diagnosis/HomeScreen'
 
 export const HOME_SCREEN = 'HOME_SCREEN'
 const images = [
@@ -59,6 +60,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
                 break;
               case 2:
                 // Navigate to Disease screen
+                navigation.navigate(DISEASE_HOME_SCREEN)
                 console.log('Navigate to Disease');
                 break;
               case 3:

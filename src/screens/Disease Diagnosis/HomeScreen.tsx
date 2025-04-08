@@ -8,7 +8,8 @@ import ImagePickerComponent from '../../components/ImagePickerComponent'; // Adj
 import Container from '../../components/Container';
 import Header from '../../components/Header';
 import colors from '../../theme/colors';
-import PestBanner from '../../assets/pestHome1.png';
+import PestBanner from '../../assets/pestHome.png';
+import DiseaseDiagnosis from '../../assets/DiseaseDiagnosis.png';
 import SecondBanner from '../../assets/pestHome1.png'
 import { Card } from 'react-native-paper';
 import classificationImage from '../../assets/Classification.png';
@@ -16,10 +17,11 @@ import Pest from '../../assets/Pest.png';
 import Disease from '../../assets/Disease.png';
 import Price from '../../assets/Price.png';
 import { PestHomeProps } from '../../Naviagtion/types';
-import { PREDICTION_SCREEN } from './PredictionScreen';
+// import { PREDICTION_SCREEN } from './PredictionScreen';
+import { DIAGNOSIS_SCREEN } from './DiagnosisScreen';
 import { useDispatch } from 'react-redux';
 import { addImage } from '../../store/actions'; // Adjust the path to your actions
-export const PEST_HOME = 'PEST_HOME';
+export const DISEASE_HOME_SCREEN = "DISEASE_HOME_SCREEN"
 
 const details = [
     { image: classificationImage, title: "How do we identify an insect?", subtitle: "The world of insects is rich and varied..." },
@@ -38,7 +40,8 @@ const PestHome : React.FC<PestHomeProps> = ({navigation}) => {
         }
         dispatch(addImage(uri)); // Save the image URI to Redux
         setImageUri(uri); // Set the picked image URI
-        navigation.navigate(PREDICTION_SCREEN, { imageUri: uri }); // Navigate to the Prediction screen
+        // navigation.navigate(PREDICTION_SCREEN, { imageUri: uri }); // Navigate to the Prediction screen
+        navigation.navigate(DIAGNOSIS_SCREEN, { imageUri: uri }); // Navigate to the Diagnosis screen
     };
 
     return (
@@ -46,16 +49,15 @@ const PestHome : React.FC<PestHomeProps> = ({navigation}) => {
             scrollView={true} // Allows the content to scroll if needed
             header={<Header
                 showLogo={false}
-                title={'Pest Identification'} />}
+                title={'Disease Diagnosis'} />}
         >
             <Card style={{ marginTop: 25 }}>
-                <Card.Cover source={PestBanner} />
+                <Card.Cover source={DiseaseDiagnosis} />
             </Card>
             <View style={styles.container}>
-                <Text style={styles.title}>Welcome to Paddy Pest Identifier!</Text>
+                <Text style={styles.title}>Welcome to Paddy Disease Diagnosis!</Text>
                 <Text style={styles.description}>
-                    Discover the world of pests affecting paddy crops. Simply snap a photo or upload one from your gallery to identify any pest.
-                </Text>
+                Instantly diagnose paddy diseases with a simple image and receive expert remedies, offering a one-stop solution to ensure your crops thrive and flourish.</Text>
                 <ImagePickerComponent onImagePicked={handleImagePicked} />
             </View>
             <View>

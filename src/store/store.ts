@@ -1,14 +1,15 @@
 // /src/store/store.ts
-import {  Store, Action } from 'redux';
+import { Store, Action } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage'; // Default storage method
+import AsyncStorage from '@react-native-async-storage/async-storage'; // Use AsyncStorage for React Native
 import rootReducer from './reducer'; // Import the rootReducer you just created
 import { AppState } from './reducer'; // Import your AppState type
-import { legacy_createStore as createStore} from 'redux';
+import { legacy_createStore as createStore } from 'redux';
+
 // Persist config
 const persistConfig = {
   key: 'root',
-  storage, // Use localStorage (or AsyncStorage for React Native)
+  storage: AsyncStorage, // Use AsyncStorage in React Native
 };
 
 // Create a persisted reducer

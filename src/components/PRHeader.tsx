@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import { View, Text, StyleSheet, ImageBackground } from 'react-native';
 
@@ -8,9 +9,9 @@ type PRHeaderProps = {
 const PRHeader = ({ imageUri }: PRHeaderProps) => {
   return (
     <ImageBackground source={{ uri: imageUri }} style={styles.container} resizeMode="cover">
-      <View style={styles.overlay}>
+      {/* <View style={styles.overlay}>
         <Text style={styles.headerText}>PRHeader</Text>
-      </View>
+      </View> */}
     </ImageBackground>
   );
 };

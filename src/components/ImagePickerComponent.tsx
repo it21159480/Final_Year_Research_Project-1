@@ -1,29 +1,41 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { Dialog, Portal, Button } from 'react-native-paper'; // Import Dialog from react-native-paper
 import colors from '../theme/colors';
 
 const ImagePickerComponent = ({ onImagePicked }: { onImagePicked: (uri: string) => void }) => {
+  const [visible, setVisible] = useState(false); // Dialog visibility
+  const [errorMessage, setErrorMessage] = useState(''); // Error message to display
+
+  const showErrorDialog = (message: string) => {
+    setErrorMessage(message); // Set the error message
+    setVisible(true); // Show the dialog
+  };
+
+  const hideErrorDialog = () => {
+    setVisible(false); // Hide the dialog
+    setErrorMessage(''); // Reset the error message
+  };
+
   const openCamera = () => {
     launchCamera({ mediaType: 'photo', cameraType: 'back', saveToPhotos: true }, (response) => {
-      console.log('Camera Response: ');
+      console.log('Camera Response: ', response);
       if (response.didCancel) {
-        console.log('User cancelled camera picker');
+        showErrorDialog('User cancelled the camera picker.');
       } else if (response.errorCode) {
-        console.log('Camera Error: ', response.errorMessage);
+        showErrorDialog(`Camera Error: ${response.errorMessage}`);
       } else {
         if (response.assets && response.assets.length > 0) {
           const { uri } = response.assets[0]; // Get the image URI
           if (uri) {
             onImagePicked(uri); // Pass the image URI to the parent
           } else {
-            console.log('No URI found for the selected image');
+            showErrorDialog('No URI found for the selected image.');
           }
         } else {
-          console.log('No assets found in the response');
+          showErrorDialog('No assets found in the response.');
         }
       }
     });
@@ -32,19 +44,19 @@ const ImagePickerComponent = ({ onImagePicked }: { onImagePicked: (uri: string) 
   const openGallery = () => {
     launchImageLibrary({ mediaType: 'photo' }, (response) => {
       if (response.didCancel) {
-        console.log('User cancelled image picker');
+        showErrorDialog('User cancelled the image picker.');
       } else if (response.errorCode) {
-        console.log('Gallery Error: ', response.errorMessage);
+        showErrorDialog(`Gallery Error: ${response.errorMessage}`);
       } else {
         if (response.assets && response.assets.length > 0) {
           const { uri } = response.assets[0]; // Get the image URI
           if (uri) {
             onImagePicked(uri); // Pass the image URI to the parent
           } else {
-            console.log('No URI found for the selected image');
+            showErrorDialog('No URI found for the selected image.');
           }
         } else {
-          console.log('No assets found in the response');
+          showErrorDialog('No assets found in the response.');
         }
       }
     });
@@ -60,6 +72,19 @@ const ImagePickerComponent = ({ onImagePicked }: { onImagePicked: (uri: string) 
         <Ionicons name={'images'} size={80} color={'white'} />
         <Text style={styles.buttonText}>Open Gallery</Text>
       </TouchableOpacity>
+
+      {/* Error Dialog */}
+      <Portal>
+        <Dialog visible={visible} onDismiss={hideErrorDialog}>
+          <Dialog.Title>Error</Dialog.Title>
+          <Dialog.Content>
+            <Text>{errorMessage}</Text>
+          </Dialog.Content>
+          <Dialog.Actions>
+            <Button onPress={hideErrorDialog}>OK</Button>
+          </Dialog.Actions>
+        </Dialog>
+      </Portal>
     </View>
   );
 };
