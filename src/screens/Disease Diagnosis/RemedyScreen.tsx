@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Button, Alert, Modal, TouchableOpacity } from 'react-native';
+import { View, Text, Alert, Modal, TouchableOpacity } from 'react-native';
 import axios from 'axios';
 import { Picker } from '@react-native-picker/picker';  
 import LottieView from 'lottie-react-native';  

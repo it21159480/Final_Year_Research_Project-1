@@ -14,7 +14,9 @@ import colors from '../theme/colors';
 import { PEST_HOME } from './Pest Identification/PestHome'; // Ensure this import is correct
 import { HomeScreenProps } from '../Naviagtion/types';
 import { CLASSIFICATION_HOME } from './Paddy Classification/ClassificationHome';
-import {DISEASE_HOME_SCREEN} from '../screens/Disease Diagnosis/HomeScreen'
+import {DISEASE_HOME_SCREEN} from './Disease Diagnosis/DeseaseHome';
+import {PRICE_PREDICTION_SCREEN} from './Price Prediction/PricePredictionScreen';
+
 
 export const HOME_SCREEN = 'HOME_SCREEN'
 const images = [
@@ -66,6 +68,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
               case 3:
                 // Navigate to Price screen
                 console.log('Navigate to Price');
+                navigation.navigate(PRICE_PREDICTION_SCREEN)
                 break;
               default:
                 console.log('Unknown card');
