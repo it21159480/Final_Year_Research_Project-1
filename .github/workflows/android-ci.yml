@@ -38,6 +38,9 @@ jobs:
 
     - name: Give execute permission to gradlew
       run: chmod +x android/gradlew
+    
+    - name: Configure Gradle Heap Size
+      run: echo "org.gradle.jvmargs=-Xmx4g" >> android/gradle.properties
 
     - name: Build Android Debug APK
       run: |
