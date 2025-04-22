@@ -16,7 +16,7 @@ import classificationImage from '../../assets/Classification.png';
 import Pest from '../../assets/Pest.png';
 import Disease from '../../assets/Disease.png';
 import Price from '../../assets/Price.png';
-import { PestHomeProps } from '../../Naviagtion/types';
+import { DiseaseHomeScreenProps } from '../../Naviagtion/types';
 // import { PREDICTION_SCREEN } from './PredictionScreen';
 import { DIAGNOSIS_SCREEN } from './DiagnosisScreen';
 import { useDispatch } from 'react-redux';
@@ -29,7 +29,7 @@ const details = [
     { image: Disease, title: "Disease Identification", subtitle: "Understanding the different types of diseases..." },
     { image: Price, title: "Agricultural Pricing", subtitle: "Learn how prices are set in the agriculture industry..." },
 ];
-const PestHome : React.FC<PestHomeProps> = ({navigation}) => {
+const DeseaseHome : React.FC<DiseaseHomeScreenProps> = ({navigation}) => {
     const [imageUri, setImageUri] = useState<string | null>(null);
     const dispatch = useDispatch();
 
@@ -119,4 +119,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default PestHome;
+export default DeseaseHome;
