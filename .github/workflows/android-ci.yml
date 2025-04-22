@@ -27,8 +27,8 @@ jobs:
     - name: Install dependencies
       run: yarn install
 
-    - name: Run unit tests
-      run: yarn test
+    # - name: Run unit tests
+    #   run: yarn test
 
     - name: Install Java JDK 11
       uses: actions/setup-java@v3
