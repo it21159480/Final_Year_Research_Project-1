@@ -9,10 +9,11 @@ import {PREDICTION_SCREEN} from '../screens/Pest Identification/PredictionScreen
 import { PADDY_PREDICTION_SCREEN } from '../screens/Paddy Classification/PaddyPredictionScreen';
 import {TAB_STACK} from './RootNaviagtor';
 import {CLASSIFICATION_HOME} from '../screens/Paddy Classification/ClassificationHome';
-import {DISEASE_HOME_SCREEN} from '../screens/Disease Diagnosis/HomeScreen';
+import {DISEASE_HOME_SCREEN} from '../screens/Disease Diagnosis/DeseaseHome';
 import {DIAGNOSIS_SCREEN} from '../screens/Disease Diagnosis/DiagnosisScreen';
 import { REMEDY_SCREEN } from '../screens/Disease Diagnosis/RemedyScreen';
-
+import { PRICE_PREDICTION_SCREEN } from '../screens/Price Prediction/PricePredictionScreen';
+import {PREDICTED_SCREEN} from '../screens/Price Prediction/PredictedScreen';
 export type NavigatorParamList = {
   [TAB_STACK]: undefined;
   [PEST_HOME]: undefined; // Add the PestHome screen
@@ -22,6 +23,15 @@ export type NavigatorParamList = {
   [DISEASE_HOME_SCREEN]: undefined;
   [DIAGNOSIS_SCREEN]: {imageUri: string};
   [REMEDY_SCREEN]: {disease: string};
+  [PRICE_PREDICTION_SCREEN]: undefined;
+  [PREDICTED_SCREEN]: {
+    riceType: string;
+    predictions: {
+      LSTM_Prediction: string | number;
+      SARIMA_Prediction: string | number;
+      Combined_Forecast: string | number;
+    };
+  };
 };
 
 export type TabNavigatorParamList = {
@@ -67,6 +77,16 @@ export type DiagnosisScreenProps = StackScreenProps<
 export type RemedyScreenProps = StackScreenProps<
   NavigatorParamList,
   typeof REMEDY_SCREEN
+>;
+
+export type PricePredictionScreenProps = StackScreenProps<
+  NavigatorParamList,
+  typeof PRICE_PREDICTION_SCREEN
+>;
+
+export type PredictedScreenProps = StackScreenProps<
+  NavigatorParamList,
+  typeof PREDICTED_SCREEN
 >;
 
 // export type HomeStackProps = BottomTabScreenProps<
