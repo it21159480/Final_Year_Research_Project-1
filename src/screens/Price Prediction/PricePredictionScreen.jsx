@@ -74,6 +74,7 @@ function PricePredictionScreen({ navigation }) {
     }
   };
 
+  
   return (
     <ImageBackground source={require('./paddy.jpeg')} style={styles.container}>
       <View style={styles.overlay}>

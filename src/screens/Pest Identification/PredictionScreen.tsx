@@ -46,7 +46,7 @@ const PredictionScreen: React.FC<PredictionScreenProps> = ({ route, navigation }
 
     try {
       console.log("Inside the try catch!");
-      const response = await axios.post('http://192.168.177.1:1031/predict/pest', formData, {
+      const response = await axios.post('http://192.168.250.1:1031/predict/pest', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       console.log("after getting response");
