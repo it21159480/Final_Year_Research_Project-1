@@ -19,6 +19,7 @@ import { PestHomeProps } from '../../Naviagtion/types';
 import { PREDICTION_SCREEN } from './PredictionScreen';
 import { useDispatch } from 'react-redux';
 import { addImage } from '../../store/actions'; // Adjust the path to your actions
+import ImagePickerCropComponent from '../../components/ImagePickerCropComponent';
 export const PEST_HOME = 'PEST_HOME';
 
 const details = [
@@ -56,7 +57,8 @@ const PestHome : React.FC<PestHomeProps> = ({navigation}) => {
                 <Text style={styles.description}>
                     Discover the world of pests affecting paddy crops. Simply snap a photo or upload one from your gallery to identify any pest.
                 </Text>
-                <ImagePickerComponent onImagePicked={handleImagePicked} />
+                {/* <ImagePickerComponent onImagePicked={handleImagePicked} /> */}
+                <ImagePickerCropComponent onImagePicked={handleImagePicked} />
             </View>
             <View>
                 <Text style={{ fontWeight: 'bold', fontSize: 20, color: colors.black }}>Get Start</Text>
