@@ -17,8 +17,10 @@ import Disease from '../../assets/Disease.png';
 import Price from '../../assets/Price.png';
 import { PestHomeProps } from '../../Naviagtion/types';
 import { PREDICTION_SCREEN } from './PredictionScreen';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addImage } from '../../store/actions'; // Adjust the path to your actions
+import ImagePickerCropComponent from '../../components/ImagePickerCropComponent';
+import { RootState } from '../../store/store';
 export const PEST_HOME = 'PEST_HOME';
 
 const details = [
@@ -30,7 +32,10 @@ const details = [
 const PestHome : React.FC<PestHomeProps> = ({navigation}) => {
     const [imageUri, setImageUri] = useState<string | null>(null);
     const dispatch = useDispatch();
+ const token = useSelector((state:RootState) => state.auth.user?.access_token);
 
+  // Now you can use `token` as needed
+  console.log('Token:', token);
     const handleImagePicked = (uri: string) => {
         if (!uri) {
             console.warn('No image selected. Please select an image before proceeding.');
@@ -56,7 +61,8 @@ const PestHome : React.FC<PestHomeProps> = ({navigation}) => {
                 <Text style={styles.description}>
                     Discover the world of pests affecting paddy crops. Simply snap a photo or upload one from your gallery to identify any pest.
                 </Text>
-                <ImagePickerComponent onImagePicked={handleImagePicked} />
+                {/* <ImagePickerComponent onImagePicked={handleImagePicked} /> */}
+                <ImagePickerCropComponent onImagePicked={handleImagePicked} />
             </View>
             <View>
                 <Text style={{ fontWeight: 'bold', fontSize: 20, color: colors.black }}>Get Start</Text>

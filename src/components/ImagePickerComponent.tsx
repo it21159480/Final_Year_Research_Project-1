@@ -76,9 +76,10 @@ const ImagePickerComponent = ({ onImagePicked }: { onImagePicked: (uri: string) 
       {/* Error Dialog */}
       <Portal>
         <Dialog visible={visible} onDismiss={hideErrorDialog}>
-          <Dialog.Title>Error</Dialog.Title>
+         {errorMessage && (errorMessage.length > 0) && (errorMessage !== 'User cancelled the camera picker.') && (
+           <Dialog.Title>Error</Dialog.Title>)}
           <Dialog.Content>
-            <Text>{errorMessage}</Text>
+            <Text style={{color:colors.white}}>{errorMessage}</Text>
           </Dialog.Content>
           <Dialog.Actions>
             <Button onPress={hideErrorDialog}>OK</Button>
