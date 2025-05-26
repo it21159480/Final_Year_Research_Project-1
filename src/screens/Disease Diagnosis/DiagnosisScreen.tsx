@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity, Image, Alert,ImageBackground } from 'react-native';
+import { View, Text, TouchableOpacity, Image, Alert, ImageBackground } from 'react-native';
 import * as ImagePicker from 'react-native-image-picker';
-import axios from 'axios';
 import styles from './styles/DiagnosisScreenStyles';
 import LottieView from 'lottie-react-native';
 import { DiagnosisScreenProps } from '../../Naviagtion/types';
 import { REMEDY_SCREEN } from './RemedyScreen';
+import api from '../../api/axios';
 // import ImagePickerComponent from '../../components/ImagePickerComponent';
 
-export const DIAGNOSIS_SCREEN = 'DIAGNOSIS_SCREEN' 
-const DiagnosisScreen:React.FC<DiagnosisScreenProps>  = ({navigation, route}) => {
+export const DIAGNOSIS_SCREEN = 'DIAGNOSIS_SCREEN'
+const DiagnosisScreen: React.FC<DiagnosisScreenProps> = ({ navigation, route }) => {
 
   const { imageUri } = route.params
 
@@ -22,14 +22,14 @@ const DiagnosisScreen:React.FC<DiagnosisScreenProps>  = ({navigation, route}) =>
     if (imageUri) {
       handleImagePicked(imageUri);// Update the image URI state when the prop changes
     }
-  },[imageUri]); // Effect to handle image URI changes
+  }, [imageUri]); // Effect to handle image URI changes
   // const navigation = useNavigation<any>(); // Initialize the navigation hook
 
   const handleImageUpload = async () => {
     const options: ImagePicker.ImageLibraryOptions = {
       mediaType: 'photo',
       quality: 1,
-      
+
     };
 
     ImagePicker.launchImageLibrary(options, async (response) => {
@@ -39,7 +39,7 @@ const DiagnosisScreen:React.FC<DiagnosisScreenProps>  = ({navigation, route}) =>
         console.error('ImagePicker Error: ', response.errorMessage);
       } else {
         const uri = response.assets?.[0]?.uri;
-        setImageUri(uri || '');  
+        setImageUri(uri || '');
         setPrediction(null);
 
         try {
@@ -47,8 +47,8 @@ const DiagnosisScreen:React.FC<DiagnosisScreenProps>  = ({navigation, route}) =>
           let formData = new FormData();
           formData.append('image', { uri, type: 'image/jpeg', name: 'image.jpg' });
 
-          const responseFromApi = await axios.post(
-            'http://172.28.30.127:5000/predict',
+          const responseFromApi = await api.post(
+            '/disease/predict',
             formData,
             { headers: { 'Content-Type': 'multipart/form-data' } }
           );
@@ -79,17 +79,27 @@ const DiagnosisScreen:React.FC<DiagnosisScreenProps>  = ({navigation, route}) =>
     });
   };
 
-  const handleImagePicked = async (uri :string)=>{
-    try {
-      setLoading(true);
-      let formData = new FormData();
-      formData.append('image', { uri, type: 'image/jpeg', name: 'image.jpg' });
 
-      const responseFromApi = await axios.post(
-        'http://172.28.30.127:5000/predict',  
-        formData,
-        { headers: { 'Content-Type': 'multipart/form-data' } }
-      );
+  const handleImagePicked = async (uri: string) => {
+    setLoading(true);
+    const formData = new FormData();
+
+    const file = {
+      uri: imageUri,
+      type: 'image/jpeg',
+      name: 'upload.jpg',
+    };
+    console.log("file name:", file);
+    formData.append('image', file);
+    try {
+      console.log("Inside the try catch!");
+
+      formData.append('image', { uri, type: 'image/jpeg', name: 'image.jpg' });
+      console.log("formData:", formData);
+
+      const responseFromApi = await api.post('/disease/predict', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      });
 
       if (responseFromApi.data.predicted_label) {
         setPrediction(responseFromApi.data);
@@ -108,6 +118,7 @@ const DiagnosisScreen:React.FC<DiagnosisScreenProps>  = ({navigation, route}) =>
       if (error.response && error.response.data.message === 'Not a Paddy Leaf') {
         Alert.alert('Error', 'This is not a Paddy Leaf!');
       } else {
+        console.log('Error making request:', error);
         Alert.alert('Error', 'Error making request');
       }
     } finally {
@@ -125,66 +136,66 @@ const DiagnosisScreen:React.FC<DiagnosisScreenProps>  = ({navigation, route}) =>
   };
 
   return (
-    <ImageBackground 
-      source={require('../../assets/background3.jpg')} 
-      style={styles.background} 
+    <ImageBackground
+      source={require('../../assets/background3.jpg')}
+      style={styles.background}
     >
-    <View style={styles.container}>
-   
-      <Text style={styles.title}>Upload an Image to Identify the Paddy Disease</Text>
+      <View style={styles.container}>
 
-     
-
-      {loading && <Text style={styles.loadingText}>Processing...</Text>}
-
-      {imageURI ? (
-  <Image source={{ uri: imageURI }} style={styles.imagePreview} />
-) : (
-  <>
-    <Text>No Image Selected</Text>
-    {imageUri === '' && (
-      <LottieView
-        source={require('../../assets/animations/ChooseLeaf.json')}
-        autoPlay
-        loop
-        style={styles.lottieAnimation}
-      />
-    )}
-  </>
-)}
+        <Text style={styles.title}>Upload an Image to Identify the Paddy Disease</Text>
 
 
-      {prediction && (
-        <View style={styles.resultContainer}>
-          <Text style={styles.resultText}>Predicted Label: {prediction.predicted_label}</Text>
 
-        
-          {prediction.predicted_label.toLowerCase() !== 'normal' && (
-            <TouchableOpacity onPress={handleNavigateToRemedy}>
-              <Text style={styles.remedyLink}>See Remedy Suggestions</Text>
+        {loading && <Text style={styles.loadingText}>Processing...</Text>}
+
+        {imageURI ? (
+          <Image source={{ uri: imageURI }} style={styles.imagePreview} />
+        ) : (
+          <>
+            <Text>No Image Selected</Text>
+            {imageUri === '' && (
+              <LottieView
+                source={require('../../assets/animations/ChooseLeaf.json')}
+                autoPlay
+                loop
+                style={styles.lottieAnimation}
+              />
+            )}
+          </>
+        )}
+
+
+        {prediction && (
+          <View style={styles.resultContainer}>
+            <Text style={styles.resultText}>Predicted Label: {prediction.predicted_label}</Text>
+
+
+            {prediction.predicted_label.toLowerCase() !== 'normal' && (
+              <TouchableOpacity onPress={handleNavigateToRemedy}>
+                <Text style={styles.remedyLink}>See Remedy Suggestions</Text>
+              </TouchableOpacity>
+            )}
+          </View>
+        )}
+
+        {prediction ? (
+          <TouchableOpacity onPress={handleImageUpload} style={styles.uploadButton}>
+            <Text style={styles.uploadButtonText}>Choose Another Image</Text>
+          </TouchableOpacity>
+          // <ImagePickerComponent  onImagePicked={handleImagePicked}/> 
+
+
+        ) : (
+          // Button to choose image if no prediction is made
+          <>
+            <TouchableOpacity onPress={handleImageUpload} style={styles.uploadButton}>
+              <Text style={styles.uploadButtonText}>Choose Image</Text>
             </TouchableOpacity>
-          )}
-        </View>
-      )}
-      
-      {prediction ? (
-        <TouchableOpacity onPress={handleImageUpload} style={styles.uploadButton}>
-          <Text style={styles.uploadButtonText}>Choose Another Image</Text>
-        </TouchableOpacity>
-                // <ImagePickerComponent  onImagePicked={handleImagePicked}/> 
+            {/* <ImagePickerComponent  onImagePicked={handleImagePicked}/>  */}
+          </>
+        )}
 
-
-      ) : (
-        // Button to choose image if no prediction is made
-        <>
-        <TouchableOpacity onPress={handleImageUpload} style={styles.uploadButton}>
-          <Text style={styles.uploadButtonText}>Choose Image</Text>
-        </TouchableOpacity>
-        {/* <ImagePickerComponent  onImagePicked={handleImagePicked}/>  */}
-        </>
-      )}
-
-    </View>
+      </View>
     </ImageBackground>
   );
 };

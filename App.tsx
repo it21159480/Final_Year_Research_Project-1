@@ -8,7 +8,8 @@ import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { MenuProvider } from 'react-native-popup-menu';
 import { StatusBar } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import HomeStack from './src/Naviagtion/AppStack';
+// import HomeStack from './src/Naviagtion/AppStack';
+import Navigator from './src/Naviagtion/Navigation';
 import { NavigationContainer } from '@react-navigation/native';
 import SplashScreen from 'react-native-splash-screen'; // 👈 Import splash screen
 
@@ -35,8 +36,8 @@ export default function App() {
                   />
                   {/* <RootNavigator />  */}
                   <NavigationContainer>
-                    <HomeStack />
-
+                    {/* <HomeStack /> */}
+                    <Navigator />
                   </NavigationContainer>
                 </BottomSheetModalProvider>
 
