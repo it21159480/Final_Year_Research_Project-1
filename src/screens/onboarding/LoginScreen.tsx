@@ -7,7 +7,6 @@ import type { RootState, AppDispatch } from '../../store/store';
 import { loginScreenProps } from '../../Naviagtion/types';
 import logo from '../../assets/logo.png';
 import { SIGNUP_SCREEN } from './SignUpScreen';
-import { HOME_SCREEN } from '../HomeScreen';
 import { TAB_STACK } from '../../Naviagtion/RootNaviagtor';
 
 export const LOGIN_SCREEN = 'LOGIN_SCREEN';

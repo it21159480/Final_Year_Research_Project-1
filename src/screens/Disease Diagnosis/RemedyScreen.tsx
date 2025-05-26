@@ -5,7 +5,7 @@ import { Picker } from '@react-native-picker/picker';
 import LottieView from 'lottie-react-native';  
 import { useRoute, RouteProp } from '@react-navigation/native';
 import styles from './styles/RemedyScreenStyles';  
-
+import api from '../../api/axios';
 export const REMEDY_SCREEN ='REMEDY_SCREEN'
 
 type RemedyScreenRouteProp = RouteProp<
@@ -43,7 +43,7 @@ const RemedyScreen = () => {
         Disease: [disease],
       };
 
-      const response = await axios.post(' http://172.28.30.127:5000/remedy', data);
+      const response = await api.post('/disease/remedy', data);
 
       setRemedy(response.data.recommended_remedy);
       setModalVisible(true);

@@ -7,7 +7,7 @@ import PaddyHeader from '../../components/PaddyHeader'
 import axios from 'axios';
 import { ActivityIndicator } from 'react-native-paper'
 import { PieChart } from 'react-native-chart-kit'
-
+import api from '../../api/axios'
 export const PADDY_PREDICTION_SCREEN = 'PADDY_PREDICTION_SCREEN'
 
 const PaddyPredictionScreen: React.FC<PaddyPredictionScreenProps> = ({ route, navigation }) => {
@@ -103,7 +103,7 @@ const PaddyPredictionScreen: React.FC<PaddyPredictionScreenProps> = ({ route, na
 
     try {
       console.log("Inside the try catch!")
-      const response = await axios.post('http://192.168.14.64:1031/predict', formData, {
+      const response = await api.post('/classification/predict', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       console.log("after getting response")
