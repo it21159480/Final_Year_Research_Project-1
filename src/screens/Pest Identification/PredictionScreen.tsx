@@ -14,6 +14,7 @@ import NotFound from '../../components/NotFound';
 import { leafFolderPestInfo, stemBorerPestInfo, brownPlantHopperPestInfo } from '../../constant/pestProfile';
 import axios from 'axios';
 import { Alert } from 'react-native';
+import api from '../../api/axios'; // your configured axios instance
 
 export const PREDICTION_SCREEN = 'PREDICTION_SCREEN';
 
@@ -28,11 +29,9 @@ const PredictionScreen: React.FC<PredictionScreenProps> = ({ route, navigation }
   const className = ['1 Rice-leaf-folder', '1 Yellow-Stem-Borer', '1 Brown-Plant-Hopper'];
   const uploadImage = async () => {
     if (!imageUri) {
-      console.log("Image select failed!");
       Alert.alert('No Image Selected', 'Please select an image first.');
       return;
     }
-    console.log("Image select success!");
 
     setLoading(true);
     const formData = new FormData();
@@ -45,12 +44,9 @@ const PredictionScreen: React.FC<PredictionScreenProps> = ({ route, navigation }
     formData.append('image', file);
 
     try {
-      console.log("Inside the try catch!");
-      const response = await axios.post('http://192.168.250.1:1031/predict/pest', formData, {
+      const response = await api.post('/pest/predict', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
-      console.log("after getting response");
-
       if (response.data.yolo_results && response.data.yolo_results.length > 0) {
         const result = response.data.yolo_results[0]; // Assuming one result (center crop)
         console.log("Class Name:", result.class_name);
@@ -85,7 +81,8 @@ const PredictionScreen: React.FC<PredictionScreenProps> = ({ route, navigation }
       setLoading(false);
     }
   };
-console.log('Prediction:', prediction);
+  console.log('Prediction:', prediction);
+
   useEffect(() => {
     uploadImage();
   }, []);

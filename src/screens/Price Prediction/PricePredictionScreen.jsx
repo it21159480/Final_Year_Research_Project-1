@@ -3,7 +3,7 @@ import { View, TextInput, Text, StyleSheet, TouchableOpacity, ImageBackground } 
 import { Picker } from '@react-native-picker/picker';
 import axios from 'axios';
 import { PREDICTED_SCREEN } from './PredictedScreen';
-
+import api from '../../api/axios';
 export const PRICE_PREDICTION_SCREEN = 'PRICE_PREDICTION_SCREEN';
 
 function PricePredictionScreen({ navigation }) {
@@ -44,7 +44,7 @@ function PricePredictionScreen({ navigation }) {
     setError(null);
 
     try {
-      const response = await axios.post('http://10.0.2.2:5000/predict', {
+      const response = await api.post('/price/predict', {
         rice_type: riceType,
         temperature: parseFloat(temperature),
         rainfall: parseFloat(rainfall),

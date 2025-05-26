@@ -14,6 +14,9 @@ import {DIAGNOSIS_SCREEN} from '../screens/Disease Diagnosis/DiagnosisScreen';
 import { REMEDY_SCREEN } from '../screens/Disease Diagnosis/RemedyScreen';
 import { PRICE_PREDICTION_SCREEN } from '../screens/Price Prediction/PricePredictionScreen';
 import {PREDICTED_SCREEN} from '../screens/Price Prediction/PredictedScreen';
+import { SIGNUP_SCREEN } from '../screens/onboarding/SignUpScreen';
+import { LOGIN_SCREEN } from '../screens/onboarding/LoginScreen';
+
 export type NavigatorParamList = {
   [TAB_STACK]: undefined;
   [PEST_HOME]: undefined; // Add the PestHome screen
@@ -32,6 +35,8 @@ export type NavigatorParamList = {
       Combined_Forecast: string | number;
     };
   };
+  [SIGNUP_SCREEN]: undefined; // Add the SignUp screen
+  [LOGIN_SCREEN]: undefined; // Add the Login screen
 };
 
 export type TabNavigatorParamList = {
@@ -40,6 +45,16 @@ export type TabNavigatorParamList = {
   [PROFILE_SCREEN]: undefined;
 };
 // stack navigation export
+export type signupScreenProps = StackScreenProps<
+  NavigatorParamList,
+  typeof SIGNUP_SCREEN
+>;
+
+export type loginScreenProps = StackScreenProps<
+  NavigatorParamList,
+  typeof LOGIN_SCREEN
+>;
+
 export type TabStackProps = StackScreenProps<
   NavigatorParamList,
   typeof TAB_STACK
