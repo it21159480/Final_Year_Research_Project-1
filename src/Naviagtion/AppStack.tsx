@@ -12,16 +12,16 @@ import DiagnosisScreen, { DIAGNOSIS_SCREEN } from '../screens/Disease Diagnosis/
 import RemedyScreen, { REMEDY_SCREEN } from '../screens/Disease Diagnosis/RemedyScreen';
 import PricePredictionScreen, { PRICE_PREDICTION_SCREEN } from '../screens/Price Prediction/PricePredictionScreen';
 import PredictedScreen, { PREDICTED_SCREEN } from '../screens/Price Prediction/PredictedScreen';
-import SignUpScreen, { SIGNUP_SCREEN } from '../screens/onboarding/SignUpScreen';
-import LoginScreen, { LOGIN_SCREEN } from '../screens/onboarding/LoginScreen';
+// import SignUpScreen, { SIGNUP_SCREEN } from '../screens/onboarding/SignUpScreen';
+// import LoginScreen, { LOGIN_SCREEN } from '../screens/onboarding/LoginScreen';
 export const HOME_STACK = 'HOME_STACK';
 const Stack = createStackNavigator<NavigatorParamList>();
 
 export default function HomeStack() {
     return (
         <Stack.Navigator screenOptions={{ headerShown: false, }}>
-            <Stack.Screen name={LOGIN_SCREEN} component={LoginScreen} />
-            <Stack.Screen name={SIGNUP_SCREEN} component={SignUpScreen} />
+            {/* <Stack.Screen name={LOGIN_SCREEN} component={LoginScreen} />
+            <Stack.Screen name={SIGNUP_SCREEN} component={SignUpScreen} /> */}
             <Stack.Screen name={TAB_STACK} component={RootNaviagtor} />
             <Stack.Screen name={PEST_HOME} component={PestHome} />
             <Stack.Screen name={CLASSIFICATION_HOME} component={ClassificationHome} />
