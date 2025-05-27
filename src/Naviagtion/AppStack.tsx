@@ -12,6 +12,7 @@ import DiagnosisScreen, { DIAGNOSIS_SCREEN } from '../screens/Disease Diagnosis/
 import RemedyScreen, { REMEDY_SCREEN } from '../screens/Disease Diagnosis/RemedyScreen';
 import PricePredictionScreen, { PRICE_PREDICTION_SCREEN } from '../screens/Price Prediction/PricePredictionScreen';
 import PredictedScreen, { PREDICTED_SCREEN } from '../screens/Price Prediction/PredictedScreen';
+import IntroScreen,{INTRO_SCREEN} from '../screens/IntroScreen';
 // import SignUpScreen, { SIGNUP_SCREEN } from '../screens/onboarding/SignUpScreen';
 // import LoginScreen, { LOGIN_SCREEN } from '../screens/onboarding/LoginScreen';
 export const HOME_STACK = 'HOME_STACK';
@@ -32,6 +33,9 @@ export default function HomeStack() {
             <Stack.Screen name={REMEDY_SCREEN} component={RemedyScreen} />
             <Stack.Screen name={PRICE_PREDICTION_SCREEN} component={PricePredictionScreen} />
             <Stack.Screen name={PREDICTED_SCREEN} component={PredictedScreen} />
+            <Stack.Screen name={INTRO_SCREEN} component={IntroScreen} />
+            {/* Uncomment the line below to include the HomeScreen in the stack */}
+            {/* <Stack.Screen name={HOME_SCREEN} component={HomeScreen} /> */}
             {/* Uncomment the line below to include the HomeScreen in the stack */}
             {/* <Stack.Screen name={HOME_SCREEN} component={HomeScreen} /> */}
             {/* Uncomment the line below to include the HomeScreen in the stack */}

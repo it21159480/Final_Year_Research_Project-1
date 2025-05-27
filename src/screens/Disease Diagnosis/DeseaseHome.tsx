@@ -21,15 +21,32 @@ import { DiseaseHomeScreenProps } from '../../Naviagtion/types';
 import { DIAGNOSIS_SCREEN } from './DiagnosisScreen';
 import { useDispatch } from 'react-redux';
 import { addImage } from '../../store/actions'; // Adjust the path to your actions
+import { INTRO_SCREEN } from '../IntroScreen';
 export const DISEASE_HOME_SCREEN = "DISEASE_HOME_SCREEN"
 
 const details = [
-    { image: classificationImage, title: "How do we identify an insect?", subtitle: "The world of insects is rich and varied..." },
-    { image: Pest, title: "The Scientific Nomenclature for Insects", subtitle: "There are more than one million known species of insects..." },
-    { image: Disease, title: "Disease Identification", subtitle: "Understanding the different types of diseases..." },
-    { image: Price, title: "Agricultural Pricing", subtitle: "Learn how prices are set in the agriculture industry..." },
+    {
+        image: classificationImage,
+        title: 'Paddy Variety Classification',
+        subtitle: 'AI-powered classification of Sri Lankan paddy types with fast, reliable results and a user-friendly interface.',
+    },
+    {
+        image: Pest,
+        title: 'Paddy Pest Detection',
+        subtitle: 'Real-time pest identification using deep learning, offering offline access and tailored pest management advice.',
+    },
+    {
+        image: Disease,
+        title: 'Paddy Disease Diagnosis',
+        subtitle: 'AI-based leaf disease detection with 93% accuracy and personalized treatment, optimized for offline use.',
+    },
+    {
+        image: Price,
+        title: 'Paddy Price Forecasting',
+        subtitle: 'Hybrid ML models predict paddy prices using historical and environmental data for timely market insights.',
+    },
 ];
-const DeseaseHome : React.FC<DiseaseHomeScreenProps> = ({navigation}) => {
+const DeseaseHome: React.FC<DiseaseHomeScreenProps> = ({ navigation }) => {
     const [imageUri, setImageUri] = useState<string | null>(null);
     const dispatch = useDispatch();
 
@@ -57,7 +74,7 @@ const DeseaseHome : React.FC<DiseaseHomeScreenProps> = ({navigation}) => {
             <View style={styles.container}>
                 <Text style={styles.title}>Welcome to Paddy Disease Diagnosis!</Text>
                 <Text style={styles.description}>
-                Instantly diagnose paddy diseases with a simple image and receive expert remedies, offering a one-stop solution to ensure your crops thrive and flourish.</Text>
+                    Instantly diagnose paddy diseases with a simple image and receive expert remedies, offering a one-stop solution to ensure your crops thrive and flourish.</Text>
                 <ImagePickerComponent onImagePicked={handleImagePicked} />
             </View>
             <View>
@@ -66,7 +83,7 @@ const DeseaseHome : React.FC<DiseaseHomeScreenProps> = ({navigation}) => {
             <View>
                 {details.map((item, index) => {
                     const handlePress = () => {
-                        console.log(`Navigate to ${item.title}`);
+                        navigation.navigate(INTRO_SCREEN, { title: item.title }); // Navigate to the IntroScreen
                         // You can replace this with your navigation logic
                     };
 
