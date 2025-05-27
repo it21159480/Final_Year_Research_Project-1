@@ -10,7 +10,7 @@ export default function Navigator() {
 
   return (
     <>
-      {user ? <AppStack /> : <AuthStack />}
+    {user && user.access_token ? <AppStack /> : <AuthStack />}
     </>
   );
 }

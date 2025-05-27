@@ -1,22 +1,30 @@
+/* eslint-disable no-trailing-spaces */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // src/store/authSlice.ts
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 interface User {
-  id: string;
   email: string;
-  name: string;
   access_token: string; // JWT token
 }
 
+interface SignupInfo {
+  name: string;
+  email: string;
+}
 interface AuthState {
   user: User | null;
+  signupInfo: SignupInfo | null;
+  registrationSuccess: boolean; // Registration status flag
   loading: boolean;
   error: string | null;
 }
 
 const initialState: AuthState = {
   user: null,
+  signupInfo: null, // Store signup info if needed
+  registrationSuccess: false, // Initially false, set to true on successful registration
   loading: false,
   error: null,
 };
@@ -58,10 +66,17 @@ const authSlice = createSlice({
       state.user = null;
       state.error = null;
       state.loading = false;
-      // optionally clear token from storage here
+      state.registrationSuccess = false; // Reset registration success flag
+      state.signupInfo = null; // clear signup info on logout
     },
     clearError(state) {
       state.error = null;
+    },
+    clearRegistrationSuccess(state) {
+      state.registrationSuccess = false;
+    },
+    clearSignupInfo(state) {
+      state.signupInfo = null;
     },
   },
   extraReducers: (builder) => {
@@ -70,11 +85,16 @@ const authSlice = createSlice({
       state.loading = true;
       state.error = null;
     });
-    builder.addCase(login.fulfilled, (state, action: PayloadAction<User>) => {
-      state.user = action.payload;
+    builder.addCase(login.fulfilled, (state, action) => {
+      state.user = {
+        email: action.meta.arg.email, // email from the dispatched thunk args
+        access_token: action.payload.access_token, // token from API response
+      };
+
       state.loading = false;
       state.error = null;
     });
+
     builder.addCase(login.rejected, (state, action) => {
       state.loading = false;
       state.error = action.payload || 'Login failed';
@@ -85,10 +105,12 @@ const authSlice = createSlice({
       state.loading = true;
       state.error = null;
     });
-    builder.addCase(register.fulfilled, (state, action: PayloadAction<User>) => {
-      state.user = action.payload;
+    builder.addCase(register.fulfilled, (state, action) => {
+      state.registrationSuccess = true; // Set registration success flag
       state.loading = false;
       state.error = null;
+      const { name, email } = (action.meta as { arg: { name: string; email: string } }).arg;
+      state.signupInfo = { name, email };
     });
     builder.addCase(register.rejected, (state, action) => {
       state.loading = false;
@@ -97,6 +119,6 @@ const authSlice = createSlice({
   },
 });
 
-export const { logout, clearError } = authSlice.actions;
+export const { logout, clearError, clearRegistrationSuccess, clearSignupInfo } = authSlice.actions;
 
 export default authSlice.reducer;
