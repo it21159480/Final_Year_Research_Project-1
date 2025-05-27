@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
-    backgroundColor: '#f5f5f5',
+    // backgroundColor: '#f5f5f5',
     position: 'relative',  // Allows stacking of elements
   },
   lottieBackground: {
@@ -43,11 +43,11 @@ const styles = StyleSheet.create({
     width: '80%',
     borderRadius: 8,
     backgroundColor: '#548235',
-    paddingVertical: 15,
+    paddingVertical: 10,
     alignItems: 'center',
   },
   buttonText: {
-    fontSize: 24,
+    fontSize: 18,
     fontWeight: 'bold',
     color: '#fff',
     textAlign: 'center',

@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   },
   uploadButton: {
     backgroundColor: '#4CAF50',
-    paddingVertical: 12,
+    paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 8,
     marginTop: 20,
@@ -32,12 +32,12 @@ const styles = StyleSheet.create({
   },
   uploadButtonText: {
     color: '#fff',
-    fontSize: 22,
+    fontSize: 18,
     fontWeight: 'bold',
   },
   imagePreview: {
-    width: 300,
-    height: 300,
+    width: 250,
+    height: 250,
     borderRadius: 8,
     marginTop: 20,
     marginBottom: 20,

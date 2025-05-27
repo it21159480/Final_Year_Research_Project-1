@@ -6,6 +6,8 @@ import LottieView from 'lottie-react-native';
 import { DiagnosisScreenProps } from '../../Naviagtion/types';
 import { REMEDY_SCREEN } from './RemedyScreen';
 import api from '../../api/axios';
+import Container from '../../components/Container';
+import Header from '../../components/Header';
 // import ImagePickerComponent from '../../components/ImagePickerComponent';
 
 export const DIAGNOSIS_SCREEN = 'DIAGNOSIS_SCREEN'
@@ -136,10 +138,12 @@ const DiagnosisScreen: React.FC<DiagnosisScreenProps> = ({ navigation, route }) 
   };
 
   return (
-    <ImageBackground
-      source={require('../../assets/background3.jpg')}
-      style={styles.background}
-    >
+    <Container
+      scrollView={true}
+      header={<Header
+        showLogo={false}
+        title={'Identify the Paddy Disease'} />}    >
+
       <View style={styles.container}>
 
         <Text style={styles.title}>Upload an Image to Identify the Paddy Disease</Text>
@@ -196,7 +200,7 @@ const DiagnosisScreen: React.FC<DiagnosisScreenProps> = ({ navigation, route }) 
         )}
 
       </View>
-    </ImageBackground>
+    </Container>
   );
 };
 

@@ -14,9 +14,9 @@ import colors from '../theme/colors';
 import { PEST_HOME } from './Pest Identification/PestHome'; // Ensure this import is correct
 import { HomeScreenProps } from '../Naviagtion/types';
 import { CLASSIFICATION_HOME } from './Paddy Classification/ClassificationHome';
-import {DISEASE_HOME_SCREEN} from './Disease Diagnosis/DeseaseHome';
-import {PRICE_PREDICTION_SCREEN} from './Price Prediction/PricePredictionScreen';
-
+import { DISEASE_HOME_SCREEN } from './Disease Diagnosis/DeseaseHome';
+import { PRICE_PREDICTION_SCREEN } from './Price Prediction/PricePredictionScreen';
+import { INTRO_SCREEN } from './IntroScreen';
 
 export const HOME_SCREEN = 'HOME_SCREEN'
 const images = [
@@ -26,12 +26,30 @@ const images = [
   { image: Price, title: 'Agricultural Pricing' },
 ];
 
+
 const details = [
-  { image: Classification, title: 'How do we identify an insect?', subtitle: 'The world of insects is rich and varied..' },
-  { image: Pest, title: 'The Scientific Nomenclature for Insects', subtitle: 'There are more than one million known species of insects...' },
-  { image: Disease, title: 'Disease Identification', subtitle: 'Understanding the different types of diseases...' },
-  { image: Price, title: 'Agricultural Pricing', subtitle: 'Learn how prices are set in the agriculture industry...' },
+  {
+    image: Classification,
+    title: 'Paddy Variety Classification',
+    subtitle: 'AI-powered classification of Sri Lankan paddy types with fast, reliable results and a user-friendly interface.',
+  },
+  {
+    image: Pest,
+    title: 'Paddy Pest Detection',
+    subtitle: 'Real-time pest identification using deep learning, offering offline access and tailored pest management advice.',
+  },
+  {
+    image: Disease,
+    title: 'Paddy Disease Diagnosis',
+    subtitle: 'AI-based leaf disease detection with 93% accuracy and personalized treatment, optimized for offline use.',
+  },
+  {
+    image: Price,
+    title: 'Paddy Price Forecasting',
+    subtitle: 'Hybrid ML models predict paddy prices using historical and environmental data for timely market insights.',
+  },
 ];
+
 
 
 const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
@@ -90,7 +108,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
                   alignItems: 'center',
                   borderRadius: 10, // Rounded corners
                 }} />
-                <Text style={{ position: 'absolute', bottom: 10, left: 10, color: colors.white, fontSize: 18, fontWeight: 'bold' }}>{image.title}</Text>  
+                <Text style={{ position: 'absolute', bottom: 10, left: 10, color: colors.white, fontSize: 18, fontWeight: 'bold' }}>{image.title}</Text>
               </View>
             </TouchableOpacity>
           );
@@ -101,21 +119,44 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
       </View>
       <View>
         {details.map((item, index) => {
+          const maxLength = 65; // max characters to show
+          const shortSubtitle = item.subtitle.length > maxLength
+            ? item.subtitle.slice(0, maxLength) + '...'
+            : item.subtitle;
+
           const handlePress = () => {
-            console.log(`Navigate to ${item.title}`);
-            // You can replace this with your navigation logic
+            navigation.navigate(INTRO_SCREEN,{ title: item.title }); // Navigate to the IntroScreen
+            // Replace with your navigation logic
           };
 
           return (
-            <TouchableOpacity key={index} onPress={handlePress} activeOpacity={0.7} style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 10, margin: 5, backgroundColor: colors.white, borderRadius: 10, elevation: 5 }}>
+            <TouchableOpacity
+              key={index}
+              onPress={handlePress}
+              activeOpacity={0.7}
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                padding: 10,
+                margin: 5,
+                backgroundColor: colors.white,
+                borderRadius: 10,
+                elevation: 5,
+              }}
+            >
               <View style={{ width: '70%' }}>
-                <Text style={{ fontWeight: 'bold', fontSize: 18, color: colors.black }}>{item.title}</Text>
-                <Text style={{ fontSize: 14, color: colors.N400 }} >{item.subtitle}</Text>
+                <Text style={{ fontWeight: 'bold', fontSize: 18, color: colors.black }}>
+                  {item.title}
+                </Text>
+                <Text style={{ fontSize: 14, color: colors.N400 }}>
+                  {shortSubtitle}
+                </Text>
               </View>
               <Card.Cover source={item.image} style={[styles.cardImage, { width: '30%' }]} />
             </TouchableOpacity>
           );
         })}
+
       </View>
     </Container>
   );

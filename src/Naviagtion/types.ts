@@ -16,6 +16,7 @@ import { PRICE_PREDICTION_SCREEN } from '../screens/Price Prediction/PricePredic
 import {PREDICTED_SCREEN} from '../screens/Price Prediction/PredictedScreen';
 import { SIGNUP_SCREEN } from '../screens/onboarding/SignUpScreen';
 import { LOGIN_SCREEN } from '../screens/onboarding/LoginScreen';
+import { INTRO_SCREEN } from '../screens/IntroScreen';
 
 export type NavigatorParamList = {
   [TAB_STACK]: undefined;
@@ -37,6 +38,9 @@ export type NavigatorParamList = {
   };
   [SIGNUP_SCREEN]: undefined; // Add the SignUp screen
   [LOGIN_SCREEN]: undefined; // Add the Login screen
+  [INTRO_SCREEN]: {
+    title?: string;
+  }; // Add the Intro screen
 };
 
 export type TabNavigatorParamList = {
@@ -53,6 +57,11 @@ export type signupScreenProps = StackScreenProps<
 export type loginScreenProps = StackScreenProps<
   NavigatorParamList,
   typeof LOGIN_SCREEN
+>;
+
+export type IntroScreenProps = StackScreenProps<
+  NavigatorParamList,
+  typeof INTRO_SCREEN
 >;
 
 export type TabStackProps = StackScreenProps<

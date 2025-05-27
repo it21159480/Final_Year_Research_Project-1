@@ -207,12 +207,12 @@ const PaddyPredictionScreen: React.FC<PaddyPredictionScreenProps> = ({ route, na
                   )}
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.resultCard}>
+                {/* <TouchableOpacity style={styles.resultCard}>
                   <View style={{ width: '70%', gap: 15 }}>
                     <Text style={styles.resultLabel}>Number of Data Points:</Text>
                     <Text style={styles.resultValue}>{prediction.number_of_data}</Text>
                   </View>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
 
                 {/* Explanation of Paddy Variety */}
                 {prediction.predicted_class && paddyVarieties[prediction.predicted_class] && (
