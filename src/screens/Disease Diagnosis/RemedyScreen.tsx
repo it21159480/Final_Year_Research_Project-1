@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { View, Text, Alert, Modal, TouchableOpacity } from 'react-native';
 import axios from 'axios';
-import { Picker } from '@react-native-picker/picker';  
-import LottieView from 'lottie-react-native';  
+import { Picker } from '@react-native-picker/picker';
+import LottieView from 'lottie-react-native';
 import { useRoute, RouteProp } from '@react-navigation/native';
-import styles from './styles/RemedyScreenStyles';  
-
-export const REMEDY_SCREEN ='REMEDY_SCREEN'
+import styles from './styles/RemedyScreenStyles';
+import api from '../../api/axios';
+import Container from '../../components/Container';
+import Header from '../../components/Header';
+export const REMEDY_SCREEN = 'REMEDY_SCREEN'
 
 type RemedyScreenRouteProp = RouteProp<
   { Remedy: { disease: string } },
@@ -16,15 +18,15 @@ type RemedyScreenRouteProp = RouteProp<
 const RemedyScreen = () => {
   const route = useRoute<RemedyScreenRouteProp>();
   const { disease } = route.params;
-  
+
   const [soilCondition, setSoilCondition] = useState('');
   const [weather, setWeather] = useState('');
   const [pestDetected, setPestDetected] = useState('');
   const [growthStage, setGrowthStage] = useState('');
   const [treatment, setTreatment] = useState('');
   const [province, setProvince] = useState('');
-  const [remedy, setRemedy] = useState(null);  
-  const [modalVisible, setModalVisible] = useState(false); 
+  const [remedy, setRemedy] = useState(null);
+  const [modalVisible, setModalVisible] = useState(false);
 
   const getRemedy = async () => {
     if (!soilCondition || !weather || !pestDetected || !growthStage || !treatment || !province) {
@@ -43,7 +45,7 @@ const RemedyScreen = () => {
         Disease: [disease],
       };
 
-      const response = await axios.post(' http://172.28.30.127:5000/remedy', data);
+      const response = await api.post('/disease/remedy', data);
 
       setRemedy(response.data.recommended_remedy);
       setModalVisible(true);
@@ -94,146 +96,152 @@ const RemedyScreen = () => {
   ];
 
   return (
-    <View style={styles.container}>
-      {/* Lottie Background Animation */}
-      <LottieView
-        source={require('../../assets/animations/remedybackground.json')}
-        autoPlay
-        loop
-        style={styles.lottieBackground}
-      />
+    <Container
+      scrollView={true}
+      header={<Header
+        showLogo={false}
+        title={'Remedy for Predicted Disease'} />} >
+      <View style={styles.container}>
+        {/* Lottie Background Animation */}
+        <LottieView
+          source={require('../../assets/animations/remedybackground.json')}
+          autoPlay
+          loop
+          style={styles.lottieBackground}
+        />
 
-      {/* UI Elements on top of the animation */}
-      <View style={styles.contentContainer}>
-        <Text style={styles.title}>
-          View Recommendation for the Predicted Disease: {disease}
-        </Text>
-        <Text style={styles.subHeader}>
-          Fill in the paddy conditions to receive a personalized remedy
-        </Text>
+        {/* UI Elements on top of the animation */}
+        <View style={styles.contentContainer}>
+          <Text style={styles.title}>
+          Predicted Disease: {disease}
+          </Text>
+          <Text style={styles.subHeader}>
+            Fill in the paddy conditions to receive a personalized remedy
+          </Text>
 
-        {/* Soil Condition Picker */}
-        <View style={styles.pickerContainer}>
-          <Picker
-            selectedValue={soilCondition}
-            onValueChange={setSoilCondition}
-            style={styles.picker}
+          {/* Soil Condition Picker */}
+          <View style={styles.pickerContainer}>
+            <Picker
+              selectedValue={soilCondition}
+              onValueChange={setSoilCondition}
+              style={styles.picker}
+            >
+              <Picker.Item label="Choose Soil Condition" value={null} />
+              {soilConditions.map(item => (
+                <Picker.Item label={item.label} value={item.value} key={item.value} />
+              ))}
+            </Picker>
+          </View>
+
+          {/* Weather Condition Picker */}
+          <View style={styles.pickerContainer}>
+            <Picker
+              selectedValue={weather}
+              onValueChange={setWeather}
+              style={styles.picker}
+            >
+              <Picker.Item label="Choose Weather Condition" value={null} />
+              {weatherConditions.map(item => (
+                <Picker.Item label={item.label} value={item.value} key={item.value} />
+              ))}
+            </Picker>
+          </View>
+
+          {/* Pest Detection Picker */}
+          <View style={styles.pickerContainer}>
+            <Picker
+              selectedValue={pestDetected}
+              onValueChange={setPestDetected}
+              style={styles.picker}
+            >
+              <Picker.Item label="Choose Pest Detection" value={null} />
+              {pestDetection.map(item => (
+                <Picker.Item label={item.label} value={item.value} key={item.value} />
+              ))}
+            </Picker>
+          </View>
+
+          {/* Growth Stage Picker */}
+          <View style={styles.pickerContainer}>
+            <Picker
+              selectedValue={growthStage}
+              onValueChange={setGrowthStage}
+              style={styles.picker}
+            >
+              <Picker.Item label="Choose Growth Stage" value={null} />
+              {growthStages.map(item => (
+                <Picker.Item label={item.label} value={item.value} key={item.value} />
+              ))}
+            </Picker>
+          </View>
+
+          {/* Treatment Picker */}
+          <View style={styles.pickerContainer}>
+            <Picker
+              selectedValue={treatment}
+              onValueChange={setTreatment}
+              style={styles.picker}
+            >
+              <Picker.Item label="Choose Treatment" value={null} />
+              {treatments.map(item => (
+                <Picker.Item label={item.label} value={item.value} key={item.value} />
+              ))}
+            </Picker>
+          </View>
+
+          {/* Province Picker */}
+          <View style={styles.pickerContainer}>
+            <Picker
+              selectedValue={province}
+              onValueChange={setProvince}
+              style={styles.picker}
+            >
+              <Picker.Item label="Choose Province" value={null} />
+              {provinces.map(item => (
+                <Picker.Item label={item.label} value={item.value} key={item.value} />
+              ))}
+            </Picker>
+          </View>
+
+          <TouchableOpacity
+            style={styles.button}
+            onPress={getRemedy}
           >
-            <Picker.Item label="Choose Soil Condition" value={null} />
-            {soilConditions.map(item => (
-              <Picker.Item label={item.label} value={item.value} key={item.value} />
-            ))}
-          </Picker>
-        </View>
+            <Text style={styles.buttonText}>Get Remedy</Text>
+          </TouchableOpacity>
 
-        {/* Weather Condition Picker */}
-        <View style={styles.pickerContainer}>
-          <Picker
-            selectedValue={weather}
-            onValueChange={setWeather}
-            style={styles.picker}
+          {/* Custom Modal with Animation */}
+          <Modal
+            animationType="fade"
+            transparent={true}
+            visible={modalVisible}
+            onRequestClose={() => setModalVisible(false)}
           >
-            <Picker.Item label="Choose Weather Condition" value={null} />
-            {weatherConditions.map(item => (
-              <Picker.Item label={item.label} value={item.value} key={item.value} />
-            ))}
-          </Picker>
+            <View style={styles.modalContainer}>
+
+
+              {/* Modal Content */}
+              <View style={styles.modalContent}>
+                {/* Title */}
+                <Text style={styles.modalTitle}>Recommended Remedy</Text>
+
+                {/* Actual Remedy */}
+                <Text style={styles.modalText}>{remedy}</Text>
+
+                {/* Close Button */}
+                <TouchableOpacity
+                  style={styles.closeButton}
+                  onPress={() => setModalVisible(false)} // Close modal
+                >
+                  <Text style={styles.closeButtonText}>Close</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </Modal>
+
         </View>
-
-        {/* Pest Detection Picker */}
-        <View style={styles.pickerContainer}>
-          <Picker
-            selectedValue={pestDetected}
-            onValueChange={setPestDetected}
-            style={styles.picker}
-          >
-            <Picker.Item label="Choose Pest Detection" value={null} />
-            {pestDetection.map(item => (
-              <Picker.Item label={item.label} value={item.value} key={item.value} />
-            ))}
-          </Picker>
-        </View>
-
-        {/* Growth Stage Picker */}
-        <View style={styles.pickerContainer}>
-          <Picker
-            selectedValue={growthStage}
-            onValueChange={setGrowthStage}
-            style={styles.picker}
-          >
-            <Picker.Item label="Choose Growth Stage" value={null} />
-            {growthStages.map(item => (
-              <Picker.Item label={item.label} value={item.value} key={item.value} />
-            ))}
-          </Picker>
-        </View>
-
-        {/* Treatment Picker */}
-        <View style={styles.pickerContainer}>
-          <Picker
-            selectedValue={treatment}
-            onValueChange={setTreatment}
-            style={styles.picker}
-          >
-            <Picker.Item label="Choose Treatment" value={null} />
-            {treatments.map(item => (
-              <Picker.Item label={item.label} value={item.value} key={item.value} />
-            ))}
-          </Picker>
-        </View>
-
-        {/* Province Picker */}
-        <View style={styles.pickerContainer}>
-          <Picker
-            selectedValue={province}
-            onValueChange={setProvince}
-            style={styles.picker}
-          >
-            <Picker.Item label="Choose Province" value={null} />
-            {provinces.map(item => (
-              <Picker.Item label={item.label} value={item.value} key={item.value} />
-            ))}
-          </Picker>
-        </View>
-
-        <TouchableOpacity 
-          style={styles.button} 
-          onPress={getRemedy}
-        >
-          <Text style={styles.buttonText}>Get Remedy</Text>
-        </TouchableOpacity>
-
-        {/* Custom Modal with Animation */}
-        <Modal
-  animationType="fade"
-  transparent={true}
-  visible={modalVisible}
-  onRequestClose={() => setModalVisible(false)} 
->
-  <View style={styles.modalContainer}>
-   
-
-    {/* Modal Content */}
-<View style={styles.modalContent}>
-  {/* Title */}
-  <Text style={styles.modalTitle}>Recommended Remedy</Text>
-
-  {/* Actual Remedy */}
-  <Text style={styles.modalText}>{remedy}</Text>
-
-  {/* Close Button */}
-  <TouchableOpacity 
-    style={styles.closeButton} 
-    onPress={() => setModalVisible(false)} // Close modal
-  >
-    <Text style={styles.closeButtonText}>Close</Text>
-  </TouchableOpacity>
-</View>
-  </View>
-</Modal>
-
       </View>
-    </View>
+    </Container>
   );
 };
 

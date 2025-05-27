@@ -16,19 +16,36 @@ import Pest from '../../assets/Pest.png';
 import Disease from '../../assets/Disease.png';
 import Price from '../../assets/Price.png';
 import { PestHomeProps, ClassificationHomeProps } from '../../Naviagtion/types';
-import { PADDY_PREDICTION_SCREEN } from './PaddyPredictionScreen'; 
+import { PADDY_PREDICTION_SCREEN } from './PaddyPredictionScreen';
 import { useDispatch } from 'react-redux';
 import { addImage } from '../../store/actions'; // Adjust the path to your actions
+import { INTRO_SCREEN } from '../IntroScreen';
 
 
 export const CLASSIFICATION_HOME = 'CLASSIFICATION_HOME';
 const details = [
-    { image: classificationImage, title: "How do we identify an insect?", subtitle: "The world of insects is rich and varied..." },
-    { image: Pest, title: "The Scientific Nomenclature for Insects", subtitle: "There are more than one million known species of insects..." },
-    { image: Disease, title: "Disease Identification", subtitle: "Understanding the different types of diseases..." },
-    { image: Price, title: "Agricultural Pricing", subtitle: "Learn how prices are set in the agriculture industry..." },
+    {
+        image: classificationImage,
+        title: 'Paddy Variety Classification',
+        subtitle: 'AI-powered classification of Sri Lankan paddy types with fast, reliable results and a user-friendly interface.',
+    },
+    {
+        image: Pest,
+        title: 'Paddy Pest Detection',
+        subtitle: 'Real-time pest identification using deep learning, offering offline access and tailored pest management advice.',
+    },
+    {
+        image: Disease,
+        title: 'Paddy Disease Diagnosis',
+        subtitle: 'AI-based leaf disease detection with 93% accuracy and personalized treatment, optimized for offline use.',
+    },
+    {
+        image: Price,
+        title: 'Paddy Price Forecasting',
+        subtitle: 'Hybrid ML models predict paddy prices using historical and environmental data for timely market insights.',
+    },
 ];
-const ClassificationHome : React.FC<ClassificationHomeProps> = ({navigation}) => {
+const ClassificationHome: React.FC<ClassificationHomeProps> = ({ navigation }) => {
     const [imageUri, setImageUri] = useState<string | null>(null);
     const dispatch = useDispatch();
 
@@ -65,7 +82,7 @@ const ClassificationHome : React.FC<ClassificationHomeProps> = ({navigation}) =>
             <View>
                 {details.map((item, index) => {
                     const handlePress = () => {
-                        console.log(`Navigate to ${item.title}`);
+                        navigation.navigate(INTRO_SCREEN, { title: item.title }); // Navigate to the IntroScreen
                         // You can replace this with your navigation logic
                     };
 

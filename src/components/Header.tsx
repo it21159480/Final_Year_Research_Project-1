@@ -53,7 +53,8 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24, // Adjust text size
     fontWeight: '500', // Adjust font weight
-    color: colors.black, // Use a color from your theme
+    color: colors.black, 
+    textAlign:'justify'// Use a color from your theme
   },
 });
 
